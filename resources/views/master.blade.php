@@ -2,15 +2,15 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Duanjaya | Admin</title>
+    <title>{{ URL::to('/') }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="admin/img/logo1.ico"/>
+    <link rel="shortcut icon" href="/admin/img/logo1.ico"/>
     <!--global styles-->
-    <link type="text/css" rel="stylesheet" href="admin/css/components.css" />
-    <link type="text/css" rel="stylesheet" href="admin/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/admin/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/admin/css/custom.css" />
     <!-- end of global styles-->
-    
+
     @yield('css')
 </head>
 <body class="body">
@@ -54,7 +54,7 @@ z-index: 999999">
                         <div class="user-settings no-bg">
                             <button type="button" class="btn btn-default no-bg micheal_btn" data-toggle="dropdown">
                                 <img src="admin/img/admin.jpg" class="admin_img2 img-thumbnail rounded-circle avatar-img"
-                                     alt="avatar"> <strong>{{auth()->user()->name}}</strong>
+                                     alt="avatar"> <strong></strong>
                                 <span class="fa fa-sort-down white_bg"></span>
                             </button>
                             <div class="dropdown-menu admire_admin">
@@ -64,7 +64,7 @@ z-index: 999999">
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <!-- /.container-fluid -->
         </nav>
@@ -123,31 +123,8 @@ z-index: 999999">
                                     <span class="link-title menu_hide">&nbsp;Data Rute
                                 </a>
                             </li>
-                             @if(auth()->user()->level == '1')
-                            <li>
-                                <a href="/beban">
-                                    <i class="fa fa-tasks"></i>
-                                    <span class="link-title menu_hide">&nbsp;Data Beban dan Jual
-                                </a>
-                            </li>
-                            @endif
                         </ul>
                     </li>
-                    @if(auth()->user()->level == '1')
-                    <li class="@yield('active-lp')">
-                        <a href="/laporan">
-                            <i class="fa fa-book"></i>
-                            <span class="link-title menu_hide">&nbsp;Laporan</span>
-                        </a>
-                    </li>
-                    <li class="@yield('active-us')">
-                        <a href="/user">
-                            <i class="fa fa-user"></i>
-                            <span class="link-title menu_hide">&nbsp;Users
-                            </span>
-                        </a>
-                    </li>
-                    @endif
                 </ul>
                 <!-- /#menu -->
             </div>
@@ -171,7 +148,7 @@ z-index: 999999">
             </div>
         </div>
                 <!-- /.inner -->
-           
+
             <!-- /.outer -->
         <!-- /#content -->
         <!-- Modal -->
@@ -194,13 +171,13 @@ z-index: 999999">
         </div>
     </div>
     <!--wrapper-->
-    
+
 </div>
 <!-- /#wrap -->
 <!-- global scripts-->
-<script type="text/javascript" src="admin/js/components.js"></script>
-<script type="text/javascript" src="admin/js/custom.js"></script>
-<script type="text/javascript" src="admin/js/jquery.number.min.js"></script>
+<script type="text/javascript" src="{{ URL::to('/') }}/admin/js/components.js"></script>
+<script type="text/javascript" src="{{ URL::to('/') }}/admin/js/custom.js"></script>
+<script type="text/javascript" src="{{ URL::to('/') }}/admin/js/jquery.number.min.js"></script>
 <!--end of global scripts-->
 @yield('js')
 </body>
