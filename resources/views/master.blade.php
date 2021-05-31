@@ -2,10 +2,10 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ URL::to('/') }}</title>
+    <title>Duanjaya | Admin</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/admin/img/logo1.ico"/>
+    <link rel="shortcut icon" href="admin/img/logo1.ico"/>
     <!--global styles-->
     <link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/admin/css/components.css" />
     <link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/admin/css/custom.css" />
