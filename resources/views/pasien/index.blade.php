@@ -7,20 +7,20 @@
     <link type="text/css" rel="stylesheet" href="admin/vendors/datatables/css/dataTables.bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="admin/css/pages/dataTables.bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="admin/css/plugincss/responsive.dataTables.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/wow/css/animate.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css" />
+    {{-- <link type="text/css" rel="stylesheet" href="admin/vendors/wow/css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="admin/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css" /> --}}
     <link type="text/css" rel="stylesheet" href="admin/vendors/sweetalert/css/sweetalert2.min.css" />
     <link type="text/css" rel="stylesheet" href="admin/css/pages/sweet_alert.css" />
     <!-- end of plugin styles -->
     <!--Page level styles-->
     <link type="text/css" rel="stylesheet" href="admin/css/pages/tables.css" />
-    <link type="text/css" rel="stylesheet" href="admin/css/pages/portlet.css" />
+    {{-- <link type="text/css" rel="stylesheet" href="admin/css/pages/portlet.css" />
     <link type="text/css" rel="stylesheet" href="admin/css/pages/advanced_components.css" />
     <link type="text/css" rel="stylesheet" href="admin/vendors/daterangepicker/css/daterangepicker.css" />
     <link type="text/css" rel="stylesheet" href="admin/vendors/datepicker/css/bootstrap-datepicker.min.css" />
     <link type="text/css" rel="stylesheet" href="admin/vendors/bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
     <link type="text/css" rel="stylesheet" href="admin/vendors/datetimepicker/css/DateTimePicker.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/j_timepicker/css/jquery.timepicker.css" />
+    <link type="text/css" rel="stylesheet" href="admin/vendors/j_timepicker/css/jquery.timepicker.css" /> --}}
     <!--End of page level styles-->
 @endsection
 @section('active-dt')
@@ -57,67 +57,6 @@
                                 </span>
                                 Tambah Data Pasien
                             </button>
-                            <div class="modal fade slideExpandUp" id="add-data" role="dialog"
-                                aria-labelledby="Modallabel3dsign">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content ">
-                                        <div class="modal-header bg-info ">
-                                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Pasien</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <form action="{{ route('pasien.store') }}" id="" method="post"
-                                                        class="login_validator">
-                                                        {{ csrf_field() }}
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Nama</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-bars text-primary"></i></span>
-                                                                <input type="text" class="form-control  form-control-md"
-                                                                    id="nama" name="nama" placeholder="Nama" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Email</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-money text-primary"></i></span>
-                                                                <input type="email" class="form-control  form-control-md"
-                                                                    id="harga" name="email" placeholder="Email" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Password</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-money text-primary"></i></span>
-                                                                <input type="password" class="form-control  form-control-md"
-                                                                    id="harga" name="password" placeholder="Password"
-                                                                    required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Alamat</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-money text-primary"></i></span>
-                                                                <input type="text" class="form-control  form-control-md"
-                                                                    id="harga" name="alamat" placeholder="Alamat" required>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-info" type="submit">Simpan</button>
-                                                </form>
-                                                <button class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="m-t-25">
                                 <div class="pull-sm-right">
                                     <div class="tools pull-sm-right"></div>
@@ -143,7 +82,7 @@
                                             <td>{{ $datas->alamat }}</td>
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons" style="text-align: center;">
-                                                    <a class="green" id="edit-data">
+                                                    <a data-id="{{ $datas->id }}" class="green" id="edit-data">
                                                         <i style="color: green"
                                                             class="ace-icon fa fa-pencil bigger-130"></i>
                                                     </a>
@@ -157,49 +96,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="modal fade slideExpandUp" id="m-edit-data" role="dialog"
-                                aria-labelledby="Modallabel3dsign">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content ">
-                                        <div class="modal-header bg-info ">
-                                            <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Data Golongan</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <form action="/golongan/edit" method="post" class="login_validator">
-                                                        {{ csrf_field() }}
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Nama Golongan</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-bars text-primary"></i></span>
-                                                                <input type="text" class="id" name="id" hidden>
-                                                                <input type="text" class="form-control  form-control-md"
-                                                                    id="e-nama" name="nama_golongan"
-                                                                    placeholder="Nama Golongan" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Harga</label>
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-money text-primary"></i></span>
-                                                                <input type="text" class="form-control  form-control-md"
-                                                                    id="e-harga" name="harga" placeholder="Harga" required>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-info" type="submit">Simpan</button>
-                                                </form>
-                                                <button class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- END EXAMPLE1 TABLE PORTLET-->
                         <!-- BEGIN EXAMPLE4 TABLE PORTLET-->
@@ -222,6 +119,83 @@
                             </div>
                         </div>
                         <!-- END EXAMPLE4 TABLE PORTLET-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade slideExpandUp" id="add-data" role="dialog" aria-labelledby="Modallabel3dsign">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header bg-info ">
+                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Pasien</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action="{{ route('pasien.store') }}" id="" method="post"
+                                        class="login_validator">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Nama</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-bars text-primary"></i></span>
+                                                <input type="text" class="form-control  form-control-md" id="nama"
+                                                    name="nama" placeholder="Nama" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-money text-primary"></i></span>
+                                                <input type="email" class="form-control  form-control-md" id="harga"
+                                                    name="email" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-money text-primary"></i></span>
+                                                <input type="password" class="form-control  form-control-md" id="harga"
+                                                    name="password" placeholder="Password" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Alamat</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-money text-primary"></i></span>
+                                                <input type="text" class="form-control  form-control-md" id="harga"
+                                                    name="alamat" placeholder="Alamat" required>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-info" type="submit">Simpan</button>
+                                </form>
+                                <button class="btn btn-default" data-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade slideExpandUp" id="m-edit-data" role="dialog" aria-labelledby="Modallabel3dsign">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header bg-info ">
+                            <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Data Golongan</h4>
+                        </div>
+
+                        <div class="modal-body body-edit">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,13 +230,20 @@
             <!--Page level scripts-->
             <script type="text/javascript">
                 $(document).on("click", "#edit-data", function() {
-                    $("#m-edit-data").modal('show');
+
                     var id = $(this).data('id');
-                    var nama = $(this).data('nama');
-                    var harga = $(this).data('harga');
-                    $(".modal-body .id").val(id);
-                    $(".modal-body #e-nama").val(nama);
-                    $(".modal-body #e-harga").val(harga);
+                    $.ajax({
+                        type: 'POST',
+                        data: {
+                            id: id
+                        },
+                        url: "{{ route('get.edit.pasien') }}"
+                    }).then(function(data) {
+                        if (data) {
+                            $('.body-edit').html(data);
+                            $("#m-edit-data").modal('show');
+                        }
+                    });
                 });
 
                 function deleteConfirmation(id) {
@@ -302,30 +283,6 @@
                 };
 
             </script>
-            @if (session('alertcreate'))
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        swal(
-                            'Sukses!',
-                            'Data Berhasil disimpan',
-                            'success'
-                        )
-                    });
-
-                </script>
-            @endif
-            @if (session('alertedit'))
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        swal(
-                            'Sukses!',
-                            'Data Berhasil diedit',
-                            'success'
-                        )
-                    });
-
-                </script>
-            @endif
             <script type="text/javascript" src="admin/js/pages/sweet_alerts.js"></script>
             <script type="text/javascript" src="admin/js/pages/datatable.js"></script>
             <script type="text/javascript" src="admin/js/pages/modals.js"></script>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Bookingcontroller;
 use App\Http\Controllers\Indexcontroller;
 use App\Http\Controllers\Pasiencontroller;
 use App\Http\Controllers\Swabcontroller;
+use App\Models\Pasien;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ Route::get('/', [Indexcontroller::class, 'index'])->name('index');
 Route::resource('pasien', Pasiencontroller::class);
 Route::resource('booking', Bookingcontroller::class);
 Route::resource('swab', Swabcontroller::class);
+
+Route::post('get/edit/pasien', [Pasiencontroller::class, 'get_edit'])->name('get.edit.pasien');

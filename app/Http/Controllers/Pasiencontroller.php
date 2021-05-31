@@ -87,7 +87,23 @@ class Pasiencontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->password == null) {
+            Pasien::whereid($request->id)->update([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'alamat' => $request->alamat
+            ]);
+        } else {
+            Pasien::whereid($request->id)->update([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'alamat' => $request->alamat
+            ]);
+        }
+        return redirect()->route('pasien.index')
+            ->with('success', 'Pasien edited successfully.');
+        // dd($request->all());
     }
 
     /**
@@ -102,5 +118,13 @@ class Pasiencontroller extends Controller
         $pasien = Pasien::find($pasien->id);
         $pasien->delete();
         return response()->json(['alertdelete' => true]);
+    }
+
+    function get_edit(Request $request)
+    {
+
+        $data = Pasien::select('*')->whereid($request->id)->first();
+
+        return view('pasien.modaledit', ['data' => $data]);
     }
 }
