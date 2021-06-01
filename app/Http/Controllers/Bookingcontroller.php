@@ -37,7 +37,24 @@ class Bookingcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'umur' => 'required',
+            'alamat' => 'required',
+            'tanggal' => 'required'
+        ]);
+
+        $booking = new Booking();
+        $booking->nama = $request->nama;
+        $booking->jenis_kelamin = $request->jenis_kelamin;
+        $booking->umur = $request->umur;
+        $booking->alamat = $request->alamat;
+        $booking->tanggal = $request->tanggal;
+        $booking->save();
+
+        return redirect()->route('booking.index')
+            ->with('success', 'Booking created successfully.');
     }
 
     /**
@@ -71,7 +88,26 @@ class Bookingcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->id == null) {
+            Booking::whereid($request->id)->update([
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'umur' => $request->umur,
+                'alamat' => $request->alamat,
+                'email' => $request->email
+            ]);
+        } else {
+            Booking::whereid($request->id)->update([
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'umur' => $request->umur,
+                'alamat' => $request->alamat,
+                'email' => $request->email
+            ]);
+        }
+        return redirect()->route('booking.index')
+            ->with('success', 'Booking edited successfully.');
+        // dd($request->all());
     }
 
     /**
@@ -80,8 +116,17 @@ class Bookingcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Booking $booking)
     {
-        //
+        $pasien = Booking::find($booking->id);
+        $pasien->delete();
+        return response()->json(['alertdelete' => true]);
     }
+
+    // function get_edit(Request $request)
+    // {
+    //     $data = Pasien::select('*')->whereid($request->id)->first();
+
+    //     return view('pasien.modaledit', ['data' => $data]);
+    // }
 }
