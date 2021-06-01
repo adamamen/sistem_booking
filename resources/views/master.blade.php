@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Duanjaya | Admin</title>
+    <title>Admin</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="admin/img/logo1.ico" />
@@ -42,7 +42,7 @@ z-index: 999999">
             <nav class="navbar navbar-static-top">
                 <div class="container-fluid m-0">
                     <a class="navbar-brand float-left" href="/">
-                        <h4><img src="admin/img/logo1.ico" class="admin_img" alt="logo"> DUANJAYA</h4>
+                        <h4><img src="" class="admin_img" alt="logo"> Admin</h4>
                     </a>
                     <div class="menu">
                         <span class="toggle-left" id="menu-toggle">
