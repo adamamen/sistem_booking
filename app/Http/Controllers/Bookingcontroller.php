@@ -84,4 +84,10 @@ class Bookingcontroller extends Controller
     {
         //
     }
+
+    function src_booking(Request $request)
+    {
+        $book = Booking::select('*')->whereid($request->id)->first();
+        return response()->json($book);
+    }
 }

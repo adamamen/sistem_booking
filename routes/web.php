@@ -31,3 +31,5 @@ Route::resource('swab', Swabcontroller::class);
 
 Route::post('get/edit/pasien', [Pasiencontroller::class, 'get_edit'])->name('get.edit.pasien');
 Route::post('get/edit/booking', [Bookingcontroller::class, 'get_edit'])->name('get.edit.booking');
+
+Route::post('src/booking', [Bookingcontroller::class, 'src_booking'])->name('src.book');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Swab;
 use Illuminate\Http\Request;
 
 class Swabcontroller extends Controller
@@ -13,7 +15,9 @@ class Swabcontroller extends Controller
      */
     public function index()
     {
-        //
+        $dswab = Swab::all();
+        $dbook = Booking::all();
+        return view('swab.index', ['data' => $dswab, 'dbook' => $dbook]);
     }
 
     /**

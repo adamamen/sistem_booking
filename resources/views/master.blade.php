@@ -128,6 +128,12 @@ z-index: 999999">
                                         <span class="link-title menu_hide">&nbsp;Data Hasil Swab
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('swab.index') }}">
+                                        <i class="fa fa-exchange"></i>
+                                        <span class="link-title menu_hide">&nbsp;Antrian
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
