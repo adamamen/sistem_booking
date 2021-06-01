@@ -184,12 +184,19 @@ z-index: 999999">
     <script type="text/javascript" src="{{ URL::to('/') }}/admin/js/components.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/admin/js/custom.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/admin/js/jquery.number.min.js"></script>
+
+    <script type="text/javascript" src="{{ URL::to('/') }}/admin/vendors/datepicker/js/bootstrap-datepicker.min.js">
+    </script>
+    <script type="text/javascript" src="{{ URL::to('/') }}/admin/vendors/datetimepicker/js/DateTimePicker.min.js">
+    </script>
     <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
+
+        $('.datepicker').datepicker();
 
     </script>
     <!--end of global scripts-->
