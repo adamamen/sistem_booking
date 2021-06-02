@@ -130,4 +130,13 @@ class Bookingcontroller extends Controller
 
         return view('booking.modaledit', ['data' => $data]);
     }
+
+    function src_booking(Request $request)
+
+    {
+        $book = Booking::select('*')->whereid($request->id)->first();
+        $book = Booking::select('*')->whereid($request->id)->first();
+        return response()->json($book);
+        return response()->json($book);
+    }
 }
