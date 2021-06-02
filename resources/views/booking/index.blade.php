@@ -72,7 +72,11 @@ fa-bars
                                                         <label for="email" class="col-form-label"> Jenis Kelamin</label>
                                                         <div class="input-group">
                                                             <span class="input-group-addon input_email"><i class="fa fa-mars double text-primary"></i></span>
-                                                            <input type="text" class="form-control  form-control-md" name="jenis_kelamin" placeholder="Jenis Kelamin" required>
+                                                            <select name="jenis_kelamin" class="form-control" id="gender">
+                                                                <option value="">Pilih Jenis Kelamin</option>
+                                                                <option value="Pria" @if (old('gender') == "Pria") {{ 'selected' }} @endif>Pria</option>
+                                                                <option value="Perempuan" @if (old('gender') == "Perempuan") {{ 'selected' }} @endif>Perempuan</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -148,64 +152,25 @@ fa-bars
                                 @endforeach
                             </tbody>
                         </table>
+                        
+                        {{-- --------------MODAL EDIT--------------  --}}
                         <div class="modal fade slideExpandUp" id="m-edit-data" role="dialog" aria-labelledby="Modallabel3dsign">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content ">
                                     <div class="modal-header bg-info ">
                                         <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Data Booking</h4>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <!-- <form action="/golongan/edit" method="post" class="login_validator"> -->
-                                                <form action="" method="post" class="login_validator">
-                                                    {{ csrf_field() }}
-                                                    <div class="form-group">
-                                                        <label for="email" class="col-form-label"> Nama</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input_email"><i class="fa fa-bars text-primary"></i></span>
-                                                            <input type="text" class="form-control  form-control-md" name="nama" placeholder="Nama" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" class="col-form-label"> Jenis Kelamin</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input_email"><i class="fa fa-mars double text-primary"></i></span>
-                                                            <input type="text" class="form-control  form-control-md" name="jenis_kelamin" placeholder="Jenis Kelamin" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" class="col-form-label"> Umur</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input_email"><i class="fa fa-hourglass-half text-primary"></i></span>
-                                                            <input type="text" class="form-control  form-control-md" name="umur" placeholder="Umur" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" class="col-form-label"> Alamat</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input_email"><i class="fa fa-address-card text-primary"></i></span>
-                                                            <input type="text" class="form-control  form-control-md" name="alamat" placeholder="Alamat" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email" class="col-form-label"> Tanggal</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon input_email"><i class="fa fa-table text-primary"></i></span>
-                                                            <input type="text" class="form-control datepicker form-control-md" name="tanggal" placeholder="Tanggal" required>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-info" type="submit">Simpan</button>
-                                            </form>
-                                            <button class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                        </div>
+                
+                                    <div class="modal-body body-edit">
+                
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-default" data-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <!-- END EXAMPLE1 TABLE PORTLET-->
                     <!-- BEGIN EXAMPLE4 TABLE PORTLET-->
@@ -276,15 +241,15 @@ fa-bars
                 });
             });
 
-            $(document).on("click", "#edit-data", function() {
-                $("#m-edit-data").modal('show');
-                var id = $(this).data('id');
-                var nama = $(this).data('nama');
-                var harga = $(this).data('harga');
-                $(".modal-body .id").val(id);
-                $(".modal-body #e-nama").val(nama);
-                $(".modal-body #e-harga").val(harga);
-            });
+            // $(document).on("click", "#edit-data", function() {
+            //     $("#m-edit-data").modal('show');
+            //     var id = $(this).data('id');
+            //     var nama = $(this).data('nama');
+            //     var harga = $(this).data('harga');
+            //     $(".modal-body .id").val(id);
+            //     $(".modal-body #e-nama").val(nama);
+            //     $(".modal-body #e-harga").val(harga);
+            // });
 
             function deleteConfirmation(id) {
                 swal({

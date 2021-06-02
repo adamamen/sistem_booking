@@ -118,7 +118,7 @@ z-index: 999999">
                                 </li>
                                 <li>
                                     <a href="{{ route('booking.index') }}">
-                                        <i class="fa fa-bars"></i>
+                                        <i class="fa fa-book"></i>
                                         <span class="link-title menu_hide">&nbsp;Data Booking
                                     </a>
                                 </li>

@@ -94,7 +94,7 @@ class Bookingcontroller extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'umur' => $request->umur,
                 'alamat' => $request->alamat,
-                'email' => $request->email
+                'tanggal' => $request->tanggal
             ]);
         } else {
             Booking::whereid($request->id)->update([
@@ -102,7 +102,7 @@ class Bookingcontroller extends Controller
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'umur' => $request->umur,
                 'alamat' => $request->alamat,
-                'email' => $request->email
+                'tanggal' => $request->tanggal
             ]);
         }
         return redirect()->route('booking.index')
@@ -123,9 +123,11 @@ class Bookingcontroller extends Controller
         return response()->json(['alertdelete' => true]);
     }
 
-    function src_booking(Request $request)
+    function get_edit(Request $request)
     {
-        $book = Booking::select('*')->whereid($request->id)->first();
-        return response()->json($book);
+
+        $data = Booking::select('*')->whereid($request->id)->first();
+
+        return view('booking.modaledit', ['data' => $data]);
     }
 }
