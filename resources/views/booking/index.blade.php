@@ -68,12 +68,18 @@
                                                         class="login_validator">
                                                         {{ csrf_field() }}
                                                         <div class="form-group">
-                                                            <label for="email" class="col-form-label"> Nama</label>
+                                                            <label for="email" class="col-form-label"> Nama Pasien</label>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon input_email"><i
-                                                                        class="fa fa-bars text-primary"></i></span>
-                                                                <input type="text" class="form-control  form-control-md"
-                                                                    name="nama" placeholder="Nama" required>
+                                                                        class="fa fa-user double text-primary"></i></span>
+                                                                <select name="nama" class="form-control" id="gender">
+                                                                    <option value="">Pilih Pasien</option>
+                                                                    @foreach ($user as $users)
+
+                                                                        <option value="{{ $users->id }}">
+                                                                            {{ $users->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -221,28 +227,30 @@
         @endsection
         @section('js')
             <!--  plugin scripts -->
-            <script type="text/javascript" src="admin/vendors/select2/js/select2.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
-            <script type="text/javascript" src="admin/js/pluginjs/dataTables.tableTools.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
-            <script type="text/javascript" src="admin/js/pluginjs/jquery.dataTables.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/buttons.colVis.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/buttons.html5.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/buttons.print.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/wow/js/wow.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/autosize/js/jquery.autosize.min.js"></script>
-            <script type="text/javascript" src="admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
-            <script type="text/javascript" src="admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/select2/js/select2.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js">
+            </script>
+            <script type="text/javascript" src="tmpl_admin/vendors/wow/js/wow.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js">
+            </script>
+            <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/autosize/js/jquery.autosize.min.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
+            <script type="text/javascript" src="tmpl_admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
             <!-- end of plugin scripts -->
             <!--Page level scripts-->
             <script type="text/javascript">
@@ -334,8 +342,8 @@
 
                 </script>
             @endif
-            <script type="text/javascript" src="{{ asset('admin/js/pages/sweet_alerts.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('admin/js/pages/datatable.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('admin/js/pages/modals.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/sweet_alerts.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/datatable.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/modals.js') }}"></script>
             <!-- end of global scripts-->
         @endsection

@@ -45,4 +45,25 @@ Route::middleware(['auth:web'])->group(function () {
 Route::get('/login/admin', [Authcontroller::class, 'index_login_admin'])->name('login.admin.index');
 Route::post('/login/admin/post', [Authcontroller::class, 'login_web_post'])->name('post.login.web');
 
+
+//FRONT
+Route::get('/register', [Indexcontroller::class, 'register_index'])->name('register.index');
+Route::post('/register/post', [Authcontroller::class, 'post_register'])->name('register.post');
+
+Route::get('/login', [Indexcontroller::class, 'login_index'])->name('login.index');
+Route::post('/login/post', [Authcontroller::class, 'post_login'])->name('login.post');
+
+Route::middleware(['auth:client'])->group(function () {
+    Route::get('/logout', function () {
+        Auth::guard('client')->logout();
+        return redirect()->route('index');
+    })->name('logout');
+
+    Route::get('/bookings', [Indexcontroller::class, 'booking_index'])->name('bookingc.index');
+    Route::post('/bookings/post', [Indexcontroller::class, 'booking_post'])->name('bookingc.post');
+
+    Route::get('/antrians', [Indexcontroller::class, 'antrian_index'])->name('antrianc.index');
+    Route::get('/hasil', [Indexcontroller::class, 'hasil_index'])->name('hasilc.index');
+});
+
 Route::get('/', [Indexcontroller::class, 'index'])->name('index');

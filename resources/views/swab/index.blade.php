@@ -235,32 +235,34 @@
         @endsection
     @section('js')
         <!--  plugin scripts -->
-        <script type="text/javascript" src="admin/vendors/select2/js/select2.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="admin/js/pluginjs/dataTables.tableTools.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="admin/js/pluginjs/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/buttons.colVis.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/buttons.html5.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/buttons.print.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/wow/js/wow.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/autosize/js/jquery.autosize.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
-        <script type="text/javascript" src="admin/vendors/datetimepicker/js/DateTimePicker.min.js"></script>
-        <script type="text/javascript" src="admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/select2/js/select2.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js">
+        </script>
+        <script type="text/javascript" src="tmpl_admin/vendors/wow/js/wow.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js">
+        </script>
+        <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/autosize/js/jquery.autosize.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/datetimepicker/js/DateTimePicker.min.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
 
-        <script type="text/javascript" src="admin/vendors/chosen/js/chosen.jquery.js"></script>
+        <script type="text/javascript" src="tmpl_admin/vendors/chosen/js/chosen.jquery.js"></script>
         <!-- end of plugin scripts -->
         <!--Page level scripts-->
         <script type="text/javascript">
@@ -335,7 +337,7 @@
                         $('#jk').val(data.jenis_kelamin);
                         $('#umur').val(data.umur);
                         $('#alamat').val(data.alamat);
-                        $('#tanggal').val(data.created_at);
+                        $('#tanggal').val(data.tanggal);
                     });
                 }
 

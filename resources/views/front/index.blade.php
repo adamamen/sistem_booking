@@ -55,7 +55,17 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Portfolio</a></li> --}}
-                    <li><a href="#team">Login</a></li>
+                    @if (Auth::guard('client')->check())
+                        <li><a href="{{ route('bookingc.index') }}">Booking</a></li>
+                        <li><a href="{{ route('antrianc.index') }}">Antrian</a></li>
+                        <li><a href="{{ route('hasilc.index') }}">Hasil Swab</a></li>
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                    @endif
+                    @if (!Auth::guard('client')->check())
+                        <li><a href="{{ route('login.index') }}">Login</a></li>
+                        <li><a href="{{ route('register.index') }}">Signup</a></li>
+                    @endif
+
                     {{-- <li class="drop-down"><a href="">Drop Down</a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -73,7 +83,7 @@
                             <li><a href="#">Drop Down 5</a></li>
                         </ul>
                     </li> --}}
-                    <li><a href="#contact">Signup</a></li>
+
 
                     {{-- <li class="get-started"><a href="#about">Get Started</a></li> --}}
                 </ul>
@@ -86,16 +96,16 @@
     <section id="hero">
 
         <div class="container">
-            <div class="row d-flex align-items-center"">
-      <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
-                <h1>Platform Booking Swab Online</h1>
-                <h2>Cepat | Praktis | Akurat</h2>
-                <a href="#about" class="btn-get-started scrollto">Book Now!</a>
+            <div class="row d-flex align-items-center" style="height: 580px">
+                <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
+                    <h1>Platform Booking Swab Online</h1>
+                    <h2>Cepat | Praktis | Akurat</h2>
+                    <a href="#about" class="btn-get-started scrollto">Book Now!</a>
+                </div>
+                <div style="padding: 100px" class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+                    <img src="Bocor/assets/img/0000028.png" class="img-fluid" alt="">
+                </div>
             </div>
-            <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-                <img src="Bocor/assets/img/hero-img.png" class="img-fluid" alt="">
-            </div>
-        </div>
         </div>
 
     </section><!-- End Hero -->

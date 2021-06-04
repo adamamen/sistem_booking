@@ -1,3 +1,4 @@
+<link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -90,16 +91,32 @@
     }
 
 </style>
+@if (session('status'))
+    <h2 class="login-header">{{ session('mssg') }}</h2>
+@endif
+@if (session('status1'))
+    <h2 class="login-header">{{ session('mssg') }} <a href="{{ route('index') }}"> Home </a></h2>
+@endif
 <div class="login">
     <div class="login-triangle"></div>
 
-    <h2 class="login-header">Log in</h2>
+    <h2 class="login-header">Booking</h2>
 
-    <form class="login-container" action="{{ route('post.login.web') }}" method="post">
+    <form class="login-container" action="{{ route('bookingc.post') }}" method="post">
         @csrf
-        <p><input type="text" name="username" placeholder="Username"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p><input type="submit" value="Log in"></p>
+        <p><input type="text" name="nama" placeholder="Nama"></p>
+        <p>
+            <select class="form-control" name="jenis_kelamin">
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+        </p>
+        <input type="text" name="id_pasien" hidden value="{{ Auth::guard('client')->user()->id }}">
+        <p><input type="text" name="umur" placeholder="Umur"></p>
+        <p><input type="text" name="alamat" placeholder="Alamat"></p>
+        <p><input type="text" name="tanggal" class="datepicker" value="{{ date('Y-m-d') }}" readonly
+                placeholder="tanggal"></p>
+        <p><input type="submit" value="Simpan"></p>
     </form>
 </div>
 
