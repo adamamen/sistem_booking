@@ -11,4 +11,9 @@ class Indexcontroller extends Controller
     {
         return view('index.index');
     }
+
+    function index()
+    {
+        return view('front.index');
+    }
 }
