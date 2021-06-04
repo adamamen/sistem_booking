@@ -20,6 +20,7 @@ class CreateBooking extends Migration
             $table->string('umur');
             $table->string('alamat');
             $table->string('tanggal');
+            $table->integer('id_pasien');
             $table->timestamps();
         });
     }

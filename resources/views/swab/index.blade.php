@@ -1,20 +1,20 @@
 @extends('master')
 @section('css')
     <!--plugin styles-->
-    <link type="text/css" rel="stylesheet" href="admin/vendors/select2/css/select2.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/datatables/css/scroller.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/datatables/css/colReorder.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/datatables/css/dataTables.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/css/pages/dataTables.bootstrap.css" />
-    <link type="text/css" rel="stylesheet" href="admin/css/plugincss/responsive.dataTables.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/chosen/css/chosen.css" />
-    {{-- <link type="text/css" rel="stylesheet" href="admin/vendors/wow/css/animate.css" />
-    <link type="text/css" rel="stylesheet" href="admin/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css" /> --}}
-    <link type="text/css" rel="stylesheet" href="admin/vendors/sweetalert/css/sweetalert2.min.css" />
-    <link type="text/css" rel="stylesheet" href="admin/css/pages/sweet_alert.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/select2/css/select2.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/scroller.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/colReorder.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/dataTables.bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/dataTables.bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/plugincss/responsive.dataTables.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/chosen/css/chosen.css" />
+    {{-- <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/wow/css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css" /> --}}
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/sweetalert/css/sweetalert2.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/sweet_alert.css" />
     <!-- end of plugin styles -->
     <!--Page level styles-->
-    <link type="text/css" rel="stylesheet" href="admin/css/pages/tables.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/tables.css" />
     {{-- <link type="text/css" rel="stylesheet" href="admin/css/pages/portlet.css" />
     <link type="text/css" rel="stylesheet" href="admin/css/pages/advanced_components.css" />
     <link type="text/css" rel="stylesheet" href="admin/vendors/daterangepicker/css/daterangepicker.css" />
@@ -342,8 +342,8 @@
             });
 
         </script>
-        <script type="text/javascript" src="admin/js/pages/sweet_alerts.js"></script>
-        <script type="text/javascript" src="admin/js/pages/datatable.js"></script>
-        <script type="text/javascript" src="admin/js/pages/modals.js"></script>
+        <script type="text/javascript" src="tmpl_admin/js/pages/sweet_alerts.js"></script>
+        <script type="text/javascript" src="tmpl_admin/js/pages/datatable.js"></script>
+        <script type="text/javascript" src="tmpl_admin/js/pages/modals.js"></script>
         <!-- end of global scripts-->
     @endsection
