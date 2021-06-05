@@ -55,15 +55,17 @@ class Bookingcontroller extends Controller
             'book_flag' => '1'
         ]);
 
+        $nama = Userclient::select('nama')->whereid($request->nama)->first();
+
         ($lastnumb) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
         ($lastnumb) ? $open = $lastnumb->open : $open = '0';
         $booking = new Booking();
-        $booking->nama = $request->nama;
+        $booking->nama = $nama->nama;
         $booking->jenis_kelamin = $request->jenis_kelamin;
         $booking->umur = $request->umur;
         $booking->alamat = $request->alamat;
         $booking->tanggal = $request->tanggal;
-        $booking->id_pasien = $request->id_pasien;
+        $booking->id_pasien = $request->nama;
         $booking->created_at = Carbon::now();
         $booking->flag = '0';
         $booking->no_antrian = $lastnumbf + 1;

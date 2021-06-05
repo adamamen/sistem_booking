@@ -67,8 +67,7 @@
                                                     <form action="{{ route('booking.store') }}" id="" method="post"
                                                         class="login_validator">
                                                         {{ csrf_field() }}
-                                                        <input type="text" name="id_pasien" hidden
-                                                            value="{{ Auth::guard('client')->user()->id }}">
+                                                        {{-- <input type="text" name="id_pasien" hidden id="id-pasien"> --}}
                                                         <div class="form-group">
                                                             <label for="email" class="col-form-label"> Nama Pasien</label>
                                                             <div class="input-group">
@@ -78,7 +77,7 @@
                                                                     <option value="">Pilih Pasien</option>
                                                                     @foreach ($user as $users)
 
-                                                                        <option value="{{ $users->name }}">
+                                                                        <option value="{{ $users->id }}">
                                                                             {{ $users->name }}</option>
                                                                     @endforeach
                                                                 </select>
