@@ -23,7 +23,11 @@ class Indexcontroller extends Controller
 
     function login_index()
     {
-        return view('front.auth.login');
+        if (Auth::guard('client')->check()) {
+            return redirect()->route('index');
+        } else {
+            return view('front.auth.login');
+        }
     }
 
     function register_index()

@@ -6,13 +6,18 @@ use App\Models\Userclient;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class Authcontroller extends Controller
 {
     public function index_login_admin()
     {
-        return view('login.login');
+        if (Auth::guard('web')->check()) {
+            return redirect()->route('index.admin');
+        } else {
+
+            return view('login.login');
+        }
     }
 
     function login_web_post(Request $request)
