@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Bocor Bootstrap Template - Index</title>
+    <title>Booking Swab</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -44,7 +44,7 @@
         <div class="container d-flex align-items-center">
 
             <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.html">Booking<span>Swab</span></a></h1>
+                <h1 class="text-light"><a href="/">Booking<span>Swab</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -100,7 +100,7 @@
                 <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
                     <h1>Platform Booking Swab Online</h1>
                     <h2>Cepat | Praktis | Akurat</h2>
-                    <a href="#about" class="btn-get-started scrollto">Book Now!</a>
+                    <a href="{{ route('bookingc.index') }}" class="btn-get-started scrollto">Book Now!</a>
                 </div>
                 <div style="padding: 100px" class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
                     <img src="Bocor/assets/img/0000028.png" class="img-fluid" alt="">

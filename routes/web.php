@@ -8,6 +8,7 @@ use App\Http\Controllers\Pasiencontroller;
 use App\Http\Controllers\Swabcontroller;
 use App\Models\Pasien;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
