@@ -53,6 +53,7 @@ class Bookingcontroller extends Controller
         $booking->umur = $request->umur;
         $booking->alamat = $request->alamat;
         $booking->tanggal = $request->tanggal;
+        $booking->flag = '0';
         $booking->save();
 
         return redirect()->route('booking.index')

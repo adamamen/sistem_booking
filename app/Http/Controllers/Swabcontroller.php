@@ -16,7 +16,7 @@ class Swabcontroller extends Controller
     public function index()
     {
         $dswab = Swab::all();
-        $dbook = Booking::all();
+        $dbook = Booking::select('*')->whereflag('0');
         return view('swab.index', ['data' => $dswab, 'dbook' => $dbook]);
     }
 

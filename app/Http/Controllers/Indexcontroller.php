@@ -68,6 +68,7 @@ class Indexcontroller extends Controller
             'umur' => $request->umur,
             'alamat' => $request->alamat,
             'tanggal' => $request->tanggal,
+            'flag' => '0'
         ]);
 
         return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking berhasil diinput']);

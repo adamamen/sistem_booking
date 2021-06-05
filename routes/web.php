@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Antriancontroller;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\Bookingcontroller;
 use App\Http\Controllers\Indexcontroller;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/admin', [Indexcontroller::class, 'index_admin'])->name('index.admin');
+    Route::get('/antrian', [Antriancontroller::class, 'index'])->name('antrian.index');
 
     Route::resource('pasien', Pasiencontroller::class);
     Route::resource('booking', Bookingcontroller::class);
