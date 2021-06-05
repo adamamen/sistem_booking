@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use Auth;
+use App\Models\Userclient;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class Indexcontroller extends Controller
@@ -34,9 +36,18 @@ class Indexcontroller extends Controller
         return view('front.booking.index');
     }
 
-    function antrial_index()
+    function antrian_index()
     {
-        return view('front.antrian.index');
+        $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->get()->toArray();
+
+        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->get()->toArray();
+        $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
+        // dd($datasisa);
+        if (empty($cek)) {
+            return redirect()->route('index');
+        } else {
+            return view('front.antrian.index', ['datasisa' => $datasisa, 'dataall' => $dataall, 'mydata' => $cek]);
+        }
     }
 
     function hasil_index()
@@ -61,14 +72,30 @@ class Indexcontroller extends Controller
             return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'Masukan data dengan benar']);
         }
 
-        Booking::insert([
-            'nama' => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'id_pasien' => $request->id_pasien,
-            'umur' => $request->umur,
-            'alamat' => $request->alamat,
-            'tanggal' => $request->tanggal,
-            'flag' => '0'
+        $cek = Userclient::select('*')->whereid($request->id_pasien)->where('book_flag', '1')->first();
+        if ($cek) {
+            return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'anda sudah booking sebelumnya']);
+        }
+
+        $lastnumb = Booking::select('no_antrian')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
+        ($lastnumb) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
+        ($lastnumb) ? $open = $lastnumb->open : $open = '0';
+
+        $booking = new Booking();
+        $booking->nama = $request->nama;
+        $booking->jenis_kelamin = $request->jenis_kelamin;
+        $booking->umur = $request->umur;
+        $booking->alamat = $request->alamat;
+        $booking->tanggal = $request->tanggal;
+        $booking->id_pasien = $request->id_pasien;
+        $booking->created_at = Carbon::now();
+        $booking->flag = '0';
+        $booking->no_antrian = $lastnumbf + 1;
+        $booking->open = $open;
+        $booking->save();
+
+        Userclient::whereid($request->id_pasien)->update([
+            'book_flag' => '1'
         ]);
 
         return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking berhasil diinput']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Userclient;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +18,7 @@ class Bookingcontroller extends Controller
     public function index()
     {
         $data = Booking::all();
-        $user = Userclient::all();
+        $user = Userclient::select('*')->wherebook_flag('0')->get();
         return view('booking.index', ['data' => $data, 'user' => $user]);
     }
 
@@ -44,17 +45,32 @@ class Bookingcontroller extends Controller
             'jenis_kelamin' => 'required',
             'umur' => 'required',
             'alamat' => 'required',
-            'tanggal' => 'required'
+            'tanggal' => 'required',
+            'id_pasien' => 'required'
         ]);
 
+        $lastnumb = Booking::select('no_antrian', 'open')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
+        // dd($lastnumb);
+        Userclient::whereid($request->id_pasien)->update([
+            'book_flag' => '1'
+        ]);
+
+        ($lastnumb) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
+        ($lastnumb) ? $open = $lastnumb->open : $open = '0';
         $booking = new Booking();
         $booking->nama = $request->nama;
         $booking->jenis_kelamin = $request->jenis_kelamin;
         $booking->umur = $request->umur;
         $booking->alamat = $request->alamat;
         $booking->tanggal = $request->tanggal;
+        $booking->id_pasien = $request->id_pasien;
+        $booking->created_at = Carbon::now();
         $booking->flag = '0';
+        $booking->no_antrian = $lastnumbf + 1;
+        $booking->open = $open;
         $booking->save();
+
+
 
         return redirect()->route('booking.index')
             ->with('success', 'Booking created successfully.');
@@ -121,8 +137,8 @@ class Bookingcontroller extends Controller
      */
     public function destroy(Booking $booking)
     {
-        $pasien = Booking::find($booking->id);
-        $pasien->delete();
+        $book = Booking::find($booking->id);
+        $book->delete();
         return response()->json(['alertdelete' => true]);
     }
 
@@ -138,8 +154,6 @@ class Bookingcontroller extends Controller
 
     {
         $book = Booking::select('*')->whereid($request->id)->first();
-        $book = Booking::select('*')->whereid($request->id)->first();
-        return response()->json($book);
         return response()->json($book);
     }
 }

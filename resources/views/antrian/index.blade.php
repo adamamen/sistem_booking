@@ -38,16 +38,63 @@
 @section('content')
     <div class="inner bg-light lter bg-container">
         <div class="row justify-content-center">
-            <div class="col-6 align-self-center">
-                <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
+            @if (empty($datasisa))
                 <div class="card card-inverse card-warning m-t-35">
                     <div class="card-header bg-white">Antrian</div>
                     <div class="card-block" style="text-align: center">
-                        <p class="card-text" style="font-size: 100px"> 1/20</p>
-                        <!-- Links -->
+                        <p style="font-size: 40px"> Tidak ada antrian hari ini </p>
                     </div>
                 </div>
-            </div>
+            @else
+
+                @if ($datasisa[0]['open'] == '0')
+                    <div class="card card-inverse card-warning m-t-35">
+                        <div class="card-header bg-white">Antrian</div>
+                        <div class="card-block" style="text-align: center">
+                            <form action="{{ route('antrian.open') }}" method="POST">
+                                @csrf
+                                <input name="tanggal" value="{{ date('d-m-Y') }}">
+                                <button type="submit" class="btn btn-success">Buka</button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+
+                    <div class="col-6 align-self-center">
+                        <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
+                        <div class="card card-inverse card-warning m-t-35">
+                            <div class="card-header bg-white">Antrian</div>
+                            <div class="card-block" style="text-align: center">
+                                <p class="card-text" style="font-size: 100px">
+                                    {{ $datasisa[0]['no_antrian'] }}/{{ count($dataall) }}
+                                </p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text" style="font-size: 10px">No Antrian:
+                                        <p class="card-text" style="font-size: 20px"> {{ $datasisa[0]['no_antrian'] }}
+                                        </p>
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="card-text" style="font-size: 10px">Nama:
+                                        <p class="card-text" style="font-size: 20px"> {{ $datasisa[0]['nama'] }}</p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="text-align: center">
+                            <form method="POST" action="{{ route('antrian.post') }}">
+                                @csrf
+                                <input name="id" hidden value="{{ $datasisa[0]['id'] }}">
+                                <button type="submit" class="btn btn-success">Lanjut ></button>
+                            </form>
+
+                        </div>
+                    </div>
+                @endif
+            @endif
         </div>
     </div>
 @endsection

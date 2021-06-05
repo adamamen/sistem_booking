@@ -28,7 +28,7 @@
     active
 @endsection
 @section('judul')
-    Data Swab
+    Data Hasil Swab
 @endsection
 @section('logo-judul')
     fa-bars
@@ -47,7 +47,7 @@
                         </div>
                     @endif
                     <div class="card-header bg-white">
-                        <i class="fa fa-database"></i>Data Pasien
+                        <i class="fa fa-database"></i>Data Hasil Swab
                     </div>
                     <div class="card-block p-t-25">
                         <div class="col-sm-12 col-md-12 col-xs-12">
@@ -56,7 +56,7 @@
                                 <span class="btn-label">
                                     <i class="fa fa-plus"></i>
                                 </span>
-                                Tambah Data Pasien
+                                Tambah Hasil Swab
                             </button>
                             <div class="m-t-25">
                                 <div class="pull-sm-right">
@@ -80,12 +80,14 @@
                                     @foreach ($data as $datas)
                                         <tr>
                                             <td>{{ $datas->nama }}</td>
-                                            <td>{{ $datas->email }}</td>
-                                            <td></td>
+                                            <td>{{ $datas->jenis_kelamin }}</td>
+                                            <td>{{ $datas->umur }}</td>
                                             <td>{{ $datas->alamat }}</td>
+                                            <td>{{ $datas->tanggal }}</td>
+                                            <td>{{ $datas->hasil }}</td>
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons" style="text-align: center;">
-                                                    <a data-id="{{ $datas->id }}" class="green" id="edit-data">
+                                                    <a data-id="{{ $datas->id_swab }}" class="green" id="edit-data">
                                                         <i style="color: green"
                                                             class="ace-icon fa fa-pencil bigger-130"></i>
                                                     </a>
@@ -130,13 +132,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content ">
                         <div class="modal-header bg-info ">
-                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Pasien</h4>
+                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Hasil</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="{{ route('pasien.store') }}" id="" method="post"
-                                        class="login_validator">
+                                    <form action="{{ route('swab.store') }}" id="" method="post" class="login_validator">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <label for="email" class="col-form-label"> Nama</label>
@@ -220,7 +221,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content ">
                         <div class="modal-header bg-info ">
-                            <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Data Golongan</h4>
+                            <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Hasil</h4>
                         </div>
 
                         <div class="modal-body body-edit">
@@ -274,7 +275,7 @@
                     data: {
                         id: id
                     },
-                    url: "{{ route('get.edit.pasien') }}"
+                    url: "{{ route('get.edit.swab') }}"
                 }).then(function(data) {
                     if (data) {
                         $('.body-edit').html(data);
@@ -298,7 +299,7 @@
                         $.ajax({
                             type: 'DELETE',
                             // method: 'DELETE',
-                            url: "/pasien/" + id,
+                            url: "/swab/" + id,
                             success: function(data) {
                                 if (data.alertdelete === true) {
                                     swal({

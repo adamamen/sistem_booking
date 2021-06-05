@@ -10,6 +10,8 @@
     <!--global styles-->
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datepicker/css/bootstrap-datepicker.min.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/j_timepicker/css/jquery.timepicker.css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- end of global styles-->
@@ -203,7 +205,12 @@ z-index: 999999">
             }
         })
 
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: true,
+            autoclose: true,
+            orientation: "top"
+        });
 
     </script>
     <!--end of global scripts-->

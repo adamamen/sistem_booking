@@ -1,123 +1,63 @@
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
 <style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
-    body {
-        background: #456;
-        font-family: "Open Sans", sans-serif;
-    }
-
-    .login {
-        width: 400px;
-        margin: 16px auto;
-        font-size: 16px;
-    }
-
-    /* Reset top and bottom margins from certain elements */
-    .login-header,
-    .login p {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    /* The triangle form is achieved by a CSS hack */
-    .login-triangle {
-        width: 0;
-        margin-right: auto;
-        margin-left: auto;
-        border: 12px solid transparent;
-        border-bottom-color: #28d;
-    }
-
-    .login-header {
-        background: #28d;
-        padding: 20px;
-        font-size: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-    }
-
-    .login-container {
-        background: #ebebeb;
-        padding: 12px;
-    }
-
-    /* Every row inside .login-container is defined with p tags */
-    .login p {
-        padding: 12px;
-    }
-
-    .login input {
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        border-width: 1px;
-        border-style: solid;
-        padding: 16px;
-        outline: 0;
-        font-family: inherit;
-        font-size: 0.95em;
-    }
-
-    .login input[type="email"],
-    .login input[type="password"] {
-        background: #fff;
-        border-color: #bbb;
-        color: #555;
-    }
-
-    /* Text fields' focus effect */
-    .login input[type="email"]:focus,
-    .login input[type="password"]:focus {
-        border-color: #888;
-    }
-
-    .login input[type="submit"] {
-        background: #28d;
-        border-color: transparent;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .login input[type="submit"]:hover {
-        background: #17c;
-    }
-
-    /* Buttons' focus effect */
-    .login input[type="submit"]:focus {
-        border-color: #05a;
+    .bodyall {
+        padding: 0;
+        margin: 0;
     }
 
 </style>
-@if (session('status'))
-    <h2 class="login-header">{{ session('mssg') }}</h2>
-@endif
-<div class="login">
-    <div class="login-triangle"></div>
+<div class="bodyall">
+    <div class="row justify-content-center">
+        @if ($datasisa[0]['open'] == '0')
+            <div class="col-6 align-self-center">
+                <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
+                <div class="card card-inverse card-warning m-t-35">
+                    <div class="card-header bg-white" style="font-size: 25px; align-self: center">Antrian</div>
+                    <div class="card-block" style="text-align: center">
+                        <p class="card-text" style="font-size: 26px">
+                            Antrian Belum dimulai
+                        </p>
+                    </div>
+                </div>
+                <br>
+            </div>
+        @else
+            <div class="col-6 align-self-center">
+                <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
+                <div class="card card-inverse card-warning m-t-35">
+                    <div class="card-header bg-white" style="font-size: 25px; align-self: center">Antrian</div>
+                    <div class="card-block" style="text-align: center">
+                        <p class="card-text" style="font-size: 100px">
+                            {{ $datasisa[0]['no_antrian'] }}/{{ count($dataall) }}
+                        </p>
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text" style="font-size: 20px">No Antrian:
+                                <p class="card-text" style="font-size: 30px"> {{ $datasisa[0]['no_antrian'] }}</p>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="card-text" style="font-size: 20px">Nama:
+                                <p class="card-text" style="font-size: 30px"> {{ $datasisa[0]['nama'] }}</p>
+                                </p>
+                            </div>
+                        </div>
+                        @if ($datasisa[0]['no_antrian'] == $mydata[0]['no_antrian'])
 
-    <h2 class="login-header">Booking</h2>
-
-    <form class="login-container" action="{{ route('login.post') }}" method="post">
-        @csrf
-        <p><input type="text" name="nama" placeholder="Nama"></p>
-        <p>
-            <select>
-                <option value="laki-laki">Laki-laki</option>
-                <option value="perempuan">Perempuan</option>
-            </select>
-        </p>
-        <p><input type="text" name="umur" placeholder="Umur"></p>
-        <p><input type="text" name="alamat" placeholder="Alamat"></p>
-        <p><input type="text" name="tanggal" placeholder="Alamat"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p><input type="submit" value="Log in"></p>
-    </form>
+                            <p class="card-text" style="font-size: 26px; color: chartreuse">
+                                Giliran Anda!
+                            </p>
+                        @endif
+                    </div>
+                </div>
+                <br>
+            </div>
+        @endif
+    </div>
 </div>
+<script>
+    setTimeout(function() {
+        location.reload();
+    }, 2000);
 
-@if (session('error'))
-    <script>
-        alert('Error! Masukan data dengan benar')
-
-    </script>
-@endif
+</script>

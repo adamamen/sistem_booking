@@ -1,4 +1,5 @@
 <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datepicker/css/bootstrap-datepicker.min.css" />
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -104,7 +105,8 @@
 
     <form class="login-container" action="{{ route('bookingc.post') }}" method="post">
         @csrf
-        <p><input type="text" name="nama" placeholder="Nama"></p>
+        <p><input type="text" name="nama" placeholder="Nama" readonly
+                value="{{ Auth::guard('client')->user()->name }}"></p>
         <p>
             <select class="form-control" name="jenis_kelamin">
                 <option value="laki-laki">Laki-laki</option>
@@ -114,8 +116,7 @@
         <input type="text" name="id_pasien" hidden value="{{ Auth::guard('client')->user()->id }}">
         <p><input type="text" name="umur" placeholder="Umur"></p>
         <p><input type="text" name="alamat" placeholder="Alamat"></p>
-        <p><input type="text" name="tanggal" class="datepicker" value="{{ date('Y-m-d') }}" readonly
-                placeholder="tanggal"></p>
+        <p><input type="text" name="tanggal" class="datepicker" readonly placeholder="tanggal"></p>
         <p><input type="submit" value="Simpan"></p>
     </form>
 </div>
@@ -126,3 +127,15 @@
 
     </script>
 @endif
+<script type="text/javascript" src="/tmpl_admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ URL::To('/') }}/tmpl_admin/vendors/datepicker/js/bootstrap-datepicker.min.js">
+</script>
+<script>
+    $('.datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        todayHighlight: true,
+        autoclose: true,
+        orientation: "top"
+    });
+
+</script>

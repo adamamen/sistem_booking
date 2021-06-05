@@ -67,6 +67,8 @@
                                                     <form action="{{ route('booking.store') }}" id="" method="post"
                                                         class="login_validator">
                                                         {{ csrf_field() }}
+                                                        <input type="text" name="id_pasien" hidden
+                                                            value="{{ Auth::guard('client')->user()->id }}">
                                                         <div class="form-group">
                                                             <label for="email" class="col-form-label"> Nama Pasien</label>
                                                             <div class="input-group">
@@ -76,7 +78,7 @@
                                                                     <option value="">Pilih Pasien</option>
                                                                     @foreach ($user as $users)
 
-                                                                        <option value="{{ $users->id }}">
+                                                                        <option value="{{ $users->name }}">
                                                                             {{ $users->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -122,7 +124,7 @@
                                                                         class="fa fa-table text-primary"></i></span>
                                                                 <input type="text"
                                                                     class="form-control datepicker form-control-md"
-                                                                    name="tanggal" placeholder="Tanggal" required>
+                                                                    name="tanggal" placeholder="Tanggal" readonly required>
                                                             </div>
                                                         </div>
                                                 </div>

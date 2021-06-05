@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\Userclient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +16,7 @@ class Pasiencontroller extends Controller
      */
     public function index()
     {
-        $data = Pasien::all();
+        $data = Userclient::all();
         return view('pasien.index', ['data' => $data]);
     }
 
@@ -44,7 +45,7 @@ class Pasiencontroller extends Controller
             'alamat' => 'required'
         ]);
 
-        $pasien = new Pasien();
+        $pasien = new Userclient();
         $pasien->nama = $request->nama;
         $pasien->email = $request->email;
         $pasien->password = Hash::make($request->password);
@@ -88,13 +89,13 @@ class Pasiencontroller extends Controller
     public function update(Request $request, $id)
     {
         if ($request->password == null) {
-            Pasien::whereid($request->id)->update([
+            Userclient::whereid($request->id)->update([
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'alamat' => $request->alamat
             ]);
         } else {
-            Pasien::whereid($request->id)->update([
+            Userclient::whereid($request->id)->update([
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -115,7 +116,7 @@ class Pasiencontroller extends Controller
     public function destroy(Pasien $pasien)
     {
         // dd($pasien);
-        $pasien = Pasien::find($pasien->id);
+        $pasien = Userclient::find($pasien->id);
         $pasien->delete();
         return response()->json(['alertdelete' => true]);
     }
@@ -123,7 +124,7 @@ class Pasiencontroller extends Controller
     function get_edit(Request $request)
     {
 
-        $data = Pasien::select('*')->whereid($request->id)->first();
+        $data = Userclient::select('*')->whereid($request->id)->first();
 
         return view('pasien.modaledit', ['data' => $data]);
     }

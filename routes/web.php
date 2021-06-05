@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/admin', [Indexcontroller::class, 'index_admin'])->name('index.admin');
     Route::get('/antrian', [Antriancontroller::class, 'index'])->name('antrian.index');
+    Route::post('/antrian/post', [Antriancontroller::class, 'post'])->name('antrian.post');
+    Route::post('/antrian/open', [Antriancontroller::class, 'open'])->name('antrian.open');
 
     Route::resource('pasien', Pasiencontroller::class);
     Route::resource('booking', Bookingcontroller::class);

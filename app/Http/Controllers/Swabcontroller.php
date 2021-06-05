@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Swab;
+use App\Models\Userclient;
 use Illuminate\Http\Request;
 
 class Swabcontroller extends Controller
@@ -15,8 +16,13 @@ class Swabcontroller extends Controller
      */
     public function index()
     {
-        $dswab = Swab::all();
-        $dbook = Booking::select('*')->whereflag('0');
+        $dswab = Swab::select('booking.*', 'swab.id as id_swab', 'swab.hasil as hasil')->join('booking', 'swab.id_booking', 'booking.id')->get();
+        // dd($dswab);
+        foreach ($dswab as $dswabs) {
+            $idswab[] = $dswabs->id;
+        }
+        $dbook = Booking::select('*')->whereflag('1')->whereNotIn('id', $idswab)->get();
+        // dd($dbook);
         return view('swab.index', ['data' => $dswab, 'dbook' => $dbook]);
     }
 
@@ -38,7 +44,14 @@ class Swabcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $swab = new Swab();
+        $swab->id_booking = $request->booking;
+        $swab->hasil = $request->hasil;
+        $swab->save();
+
+        return redirect()->route('swab.index')
+            ->with('success', 'Hasil created successfully.');
     }
 
     /**
@@ -72,7 +85,11 @@ class Swabcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Swab::whereid($request->id)->update([
+            'hasil' => $request->hasil
+        ]);
+        return redirect()->route('swab.index')
+            ->with('success', 'Booking edited successfully.');
     }
 
     /**
@@ -81,8 +98,18 @@ class Swabcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Swab $swab)
     {
-        //
+        $swab = Swab::find($swab->id);
+        $swab->delete();
+        return response()->json(['alertdelete' => true]);
+    }
+
+    function get_edit(Request $request)
+    {
+
+        $data = Swab::select('*')->whereid($request->id)->first();
+        // dd($request->id);
+        return view('swab.modaledit', ['data' => $data]);
     }
 }
