@@ -21,7 +21,7 @@ class Swabcontroller extends Controller
         foreach ($dswab as $dswabs) {
             $idswab[] = $dswabs->id;
         }
-        ($idswab) ? $idswab : $idswab = [];
+        (!empty($idswab)) ? $idswab : $idswab = [];
         $dbook = Booking::select('*')->whereflag('1')->whereNotIn('id', $idswab)->get();
         // dd($dbook);
         return view('swab.index', ['data' => $dswab, 'dbook' => $dbook]);
