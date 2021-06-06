@@ -110,6 +110,6 @@ class Indexcontroller extends Controller
             'book_flag' => '1'
         ]);
 
-        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking berhasil diinput, nomor antrian anda adalah ', 'no' => $lastnumbf + 1]);
+        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Nomor antrian anda adalah ', 'no' => $lastnumbf + 1]);
     }
 }

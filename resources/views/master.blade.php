@@ -44,7 +44,7 @@ z-index: 999999">
             <nav class="navbar navbar-static-top">
                 <div class="container-fluid m-0">
                     <a class="navbar-brand float-left" href="/">
-                        <h4><img src="" class="admin_img" alt="logo"> Admin</h4>
+                        <h4> Admin</h4>
                     </a>
                     <div class="menu">
                         <span class="toggle-left" id="menu-toggle">

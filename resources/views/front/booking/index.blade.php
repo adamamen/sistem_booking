@@ -1,5 +1,6 @@
 <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datepicker/css/bootstrap-datepicker.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/sweetalert/css/sweetalert2.min.css" />
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -95,11 +96,7 @@
 @if (session('status'))
     <h2 class="login-header">{{ session('mssg') }}</h2>
 @endif
-@if (session('status1'))
-    <h2 class="login-header">{{ session('mssg') . session('no') }} <br> <a style="color: white"
-            href="{{ route('antrianc.index') }}"> Klik disini </a> Untuk masuk ke halaman antrian
-    </h2>
-@endif
+
 <div class="login">
     <div class="login-triangle"></div>
 
@@ -130,6 +127,7 @@
     </script>
 @endif
 <script type="text/javascript" src="/tmpl_admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/tmpl_admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
 <script type="text/javascript" src="{{ URL::To('/') }}/tmpl_admin/vendors/datepicker/js/bootstrap-datepicker.min.js">
 </script>
 <script>
@@ -141,3 +139,16 @@
     });
 
 </script>
+
+@if (session('status1'))
+    <script>
+        swal({
+            title: 'Selamat!',
+            text: "{{ session('mssg') . session('no') }}",
+            type: 'success'
+        }).then(function() {
+            window.location = "{{ route('antrianc.index') }}";
+        });
+
+    </script>
+@endif
