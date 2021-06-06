@@ -18,7 +18,7 @@ var TableAdvanced = function() {
                 'copy', 'csv', 'print'
             ],
             iDisplayLength: 50,
-            order: [[ 0, "desc" ]],
+            // order: [[ 0, "desc" ]],
         });
         var tableWrapper = $('#sample_1_wrapper'); // datatable creates the table wrapper by adding with id {your_table_id}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
