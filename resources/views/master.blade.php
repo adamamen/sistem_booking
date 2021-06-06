@@ -212,14 +212,6 @@ z-index: 999999">
             orientation: "top"
         });
 
-        $(document).ready(function() {
-            $('.table-hover').DataTable({
-                "order": [
-                    [0, "asc"]
-                ]
-            });
-        });
-
     </script>
     <!--end of global scripts-->
     @yield('js')
