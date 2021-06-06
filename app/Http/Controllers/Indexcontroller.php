@@ -82,8 +82,8 @@ class Indexcontroller extends Controller
         }
 
         $lastnumb = Booking::select('no_antrian')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
-        ($lastnumb) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
-        ($lastnumb) ? $open = $lastnumb->open : $open = '0';
+        (!empty($lastnumb)) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
+        (!empty($lastnumb)) ? $open = $lastnumb->open : $open = '0';
 
         $booking = new Booking();
         $booking->nama = $request->nama;

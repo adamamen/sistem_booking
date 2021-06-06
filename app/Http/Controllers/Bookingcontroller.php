@@ -57,8 +57,8 @@ class Bookingcontroller extends Controller
 
         $nama = Userclient::select('nama')->whereid($request->nama)->first();
 
-        ($lastnumb) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
-        ($lastnumb) ? $open = $lastnumb->open : $open = '0';
+        (!empty($lastnumb)) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
+        (!empty($lastnumb)) ? $open = $lastnumb->open : $open = '0';
         $booking = new Booking();
         $booking->nama = $nama->nama;
         $booking->jenis_kelamin = $request->jenis_kelamin;
