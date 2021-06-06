@@ -113,7 +113,7 @@ class Pasiencontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasien $pasien)
+    public function destroy(Userclient $pasien)
     {
         // dd($pasien);
         $pasien = Userclient::find($pasien->id);
