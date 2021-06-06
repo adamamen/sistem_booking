@@ -17,7 +17,7 @@ var TableAdvanced = function() {
             buttons: [
                 'copy', 'csv', 'print'
             ],
-            iDisplayLength: 50,
+            iDisplayLength: 25,
             // order: [[ 0, "desc" ]],
         });
         var tableWrapper = $('#sample_1_wrapper'); // datatable creates the table wrapper by adding with id {your_table_id}_wrapper
