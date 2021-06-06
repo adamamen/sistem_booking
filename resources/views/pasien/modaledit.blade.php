@@ -7,7 +7,7 @@
             <div class="input-group">
                 <span class="input-group-addon input_email"><i class="fa fa-bars text-primary"></i></span>
                 <input type="text" value="{{ $data->id }}" name="id" hidden>
-                <input type="text" class="form-control  form-control-md" value="{{ $data->nama }}" name="nama"
+                <input type="text" class="form-control  form-control-md" value="{{ $data->name }}" name="nama"
                     placeholder="Nama" required>
             </div>
         </div>

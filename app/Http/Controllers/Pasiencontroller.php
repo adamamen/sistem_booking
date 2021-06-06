@@ -46,7 +46,7 @@ class Pasiencontroller extends Controller
         ]);
 
         $pasien = new Userclient();
-        $pasien->nama = $request->nama;
+        $pasien->name = $request->nama;
         $pasien->email = $request->email;
         $pasien->password = Hash::make($request->password);
         $pasien->alamat = $request->alamat;

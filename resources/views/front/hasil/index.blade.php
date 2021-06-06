@@ -1,123 +1,105 @@
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/select2/css/select2.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/scroller.bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/colReorder.bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/dataTables.bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/dataTables.bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/css/plugincss/responsive.dataTables.min.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/chosen/css/chosen.css" />
 
-    body {
-        background: #456;
-        font-family: "Open Sans", sans-serif;
-    }
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/chosen/css/chosen.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/tables.css" />
+<link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
 
-    .login {
-        width: 400px;
-        margin: 16px auto;
-        font-size: 16px;
-    }
 
-    /* Reset top and bottom margins from certain elements */
-    .login-header,
-    .login p {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
 
-    /* The triangle form is achieved by a CSS hack */
-    .login-triangle {
-        width: 0;
-        margin-right: auto;
-        margin-left: auto;
-        border: 12px solid transparent;
-        border-bottom-color: #28d;
-    }
+<div class="row">
+    <div class="col-12 data_tables">
+        <div style="text-align: center">
+            <p style="font-weight: bold; font-size: 45px">DATA HASIL SWAB</p>
+        </div>
+        <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
+        <div class="card">
+            <div class="card-block p-t-25">
+                <div class="col-sm-12 col-md-12 col-xs-12">
 
-    .login-header {
-        background: #28d;
-        padding: 20px;
-        font-size: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-    }
+                    <div class="m-t-25">
+                        <div class="pull-sm-right">
+                            <div class="tools pull-sm-right"></div>
+                        </div>
+                    </div>
 
-    .login-container {
-        background: #ebebeb;
-        padding: 12px;
-    }
+                    <table class="table table-striped table-bordered table-hover" id="tb-hasil">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Umur</th>
+                                <th>Alamat</th>
+                                <th>Tanggal</th>
+                                <th>Hasil</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($data as $datas)
+                                <tr>
 
-    /* Every row inside .login-container is defined with p tags */
-    .login p {
-        padding: 12px;
-    }
+                                    <td>{{ $datas->nama }}</td>
+                                    <td>{{ $datas->jenis_kelamin }}</td>
+                                    <td>{{ $datas->umur }}</td>
+                                    <td>{{ $datas->alamat }}</td>
+                                    <td>{{ $datas->tanggal }}</td>
+                                    <td>{{ $datas->hasil }}</td>
+                                    <td>
+                                        <div class="hidden-sm hidden-xs action-buttons" style="text-align: center;">
+                                            <a data-id="{{ $datas->id_swab }}" class="green" id="edit-data">
+                                                <i style="color: green" class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+                                            &emsp;
+                                            <a style="color: red" onclick="deleteConfirmation({{ $datas->id }})">
+                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-    .login input {
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        border-width: 1px;
-        border-style: solid;
-        padding: 16px;
-        outline: 0;
-        font-family: inherit;
-        font-size: 0.95em;
-    }
+                </div>
+                <!-- END EXAMPLE1 TABLE PORTLET-->
+                <!-- BEGIN EXAMPLE4 TABLE PORTLET-->
 
-    .login input[type="email"],
-    .login input[type="password"] {
-        background: #fff;
-        border-color: #bbb;
-        color: #555;
-    }
-
-    /* Text fields' focus effect */
-    .login input[type="email"]:focus,
-    .login input[type="password"]:focus {
-        border-color: #888;
-    }
-
-    .login input[type="submit"] {
-        background: #28d;
-        border-color: transparent;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .login input[type="submit"]:hover {
-        background: #17c;
-    }
-
-    /* Buttons' focus effect */
-    .login input[type="submit"]:focus {
-        border-color: #05a;
-    }
-
-</style>
-@if (session('status'))
-    <h2 class="login-header">{{ session('mssg') }}</h2>
-@endif
-<div class="login">
-    <div class="login-triangle"></div>
-
-    <h2 class="login-header">Booking</h2>
-
-    <form class="login-container" action="{{ route('login.post') }}" method="post">
-        @csrf
-        <p><input type="text" name="nama" placeholder="Nama"></p>
-        <p>
-            <select>
-                <option value="laki-laki">Laki-laki</option>
-                <option value="perempuan">Perempuan</option>
-            </select>
-        </p>
-        <p><input type="text" name="umur" placeholder="Umur"></p>
-        <p><input type="text" name="alamat" placeholder="Alamat"></p>
-        <p><input type="text" name="tanggal" placeholder="Alamat"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p><input type="submit" value="Log in"></p>
-    </form>
+                <!-- END EXAMPLE4 TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
 </div>
 
-@if (session('error'))
-    <script>
-        alert('Error! Masukan data dengan benar')
+<script type="text/javascript" src="tmpl_admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/tmpl_admin/js/components.js"></script>
 
-    </script>
-@endif
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="tmpl_admin/vendors/chosen/js/chosen.jquery.js"></script>
+<script>
+    $('#tb-hasil').DataTable({
+        dom: "flrt<'table-responsive't><'row'<'col-md-5 col-12'i><'col-md-7 col-12'p>>",
+        iDisplayLength: 25,
+        // order: [[ 0, "desc" ]],
+    });
+
+</script>

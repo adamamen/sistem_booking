@@ -66,8 +66,7 @@
 
                             <table class="table table-striped table-bordered table-hover" id="sample_1">
                                 <thead>
-                                    <tr>
-                                        <th>No</th>
+                                    <tr>>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Umur</th>
@@ -83,7 +82,7 @@
                                     @endphp
                                     @foreach ($data as $datas)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+
                                             <td>{{ $datas->nama }}</td>
                                             <td>{{ $datas->jenis_kelamin }}</td>
                                             <td>{{ $datas->umur }}</td>
@@ -132,226 +131,225 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="modal fade slideExpandUp" id="add-data" role="dialog" aria-labelledby="Modallabel3dsign">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="modal-header bg-info ">
-                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Hasil</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form action="{{ route('swab.store') }}" id="" method="post" class="login_validator">
-                                        {{ csrf_field() }}
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Nama</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-bars text-primary"></i></span>
-                                                <select class="form-control col-md-8 col-xs-8 booking" name="booking"
-                                                    id="booking" required="">
-                                                    <option disabled="" selected=""> -- Pilih Data Booking -- </option>
-                                                    @forelse ($dbook as $dbooks)
-                                                        <option required="" value="{{ $dbooks->id }}">
-                                                            {{ $dbooks->nama }}</option>
-                                                    @empty
-                                                        <option required="" value=""></option>
-
-                                                    @endforelse
-                                                </select>
-                                                <a type="button" class="btn btn-labeled btn-info bt-src"
-                                                    style="margin-left: 10px" href="#"> <span class="btn-label"> <i
-                                                            class="fa fa-sync-alt"></i> </span> Search
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Jenis Kelamin</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-money text-primary"></i></span>
-                                                <input type="text" name="id" id="id" hidden>
-                                                <input type="text" class="form-control  form-control-md" id="jk" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Umur</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-money text-primary"></i></span>
-                                                <input type="text" class="form-control  form-control-md" id="umur" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Alamat</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-money text-primary"></i></span>
-                                                <input type="text" class="form-control  form-control-md" id="alamat"
-                                                    readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Tanggal</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-money text-primary"></i></span>
-                                                <input type="text" class="form-control  form-control-md" id="tanggal"
-                                                    readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label"> Hasil</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon input_email"><i
-                                                        class="fa fa-money text-primary"></i></span>
-                                                <input type="text" name="hasil" class="form-control  form-control-md">
-                                            </div>
-                                        </div>
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-info" type="submit">Simpan</button>
-                                </form>
-                                <button class="btn btn-default" data-dismiss="modal">Tutup</button>
-                            </div>
-                        </div>
+        <div class="modal fade slideExpandUp" id="add-data" role="dialog" aria-labelledby="Modallabel3dsign">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header bg-info ">
+                        <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Hasil</h4>
                     </div>
-                </div>
-            </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="{{ route('swab.store') }}" id="" method="post" class="login_validator">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Nama</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-bars text-primary"></i></span>
+                                            <select class="form-control col-md-8 col-xs-8 booking" name="booking"
+                                                id="booking" required="">
+                                                <option disabled="" selected=""> -- Pilih Data Booking -- </option>
+                                                @forelse ($dbook as $dbooks)
+                                                    <option required="" value="{{ $dbooks->id }}">
+                                                        {{ $dbooks->nama }}</option>
+                                                @empty
+                                                    <option required="" value=""></option>
 
-            <div class="modal fade slideExpandUp" id="m-edit-data" role="dialog" aria-labelledby="Modallabel3dsign">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content ">
-                        <div class="modal-header bg-info ">
-                            <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Hasil</h4>
-                        </div>
+                                                @endforelse
+                                            </select>
+                                            <a type="button" class="btn btn-labeled btn-info bt-src"
+                                                style="margin-left: 10px" href="#"> <span class="btn-label"> <i
+                                                        class="fa fa-sync-alt"></i> </span> Search
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Jenis Kelamin</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-money text-primary"></i></span>
+                                            <input type="text" name="id" id="id" hidden>
+                                            <input type="text" class="form-control  form-control-md" id="jk" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Umur</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-money text-primary"></i></span>
+                                            <input type="text" class="form-control  form-control-md" id="umur" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Alamat</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-money text-primary"></i></span>
+                                            <input type="text" class="form-control  form-control-md" id="alamat" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Tanggal</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-money text-primary"></i></span>
+                                            <input type="text" class="form-control  form-control-md" id="tanggal" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-form-label"> Hasil</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon input_email"><i
+                                                    class="fa fa-money text-primary"></i></span>
+                                            <input type="text" name="hasil" required class="form-control  form-control-md">
+                                        </div>
+                                    </div>
 
-                        <div class="modal-body body-edit">
-
+                            </div>
                         </div>
                         <div class="modal-footer">
+                            <button class="btn btn-info" type="submit">Simpan</button>
+                            </form>
                             <button class="btn btn-default" data-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>
             </div>
-        @endsection
-    @section('js')
-        <!--  plugin scripts -->
-        <script type="text/javascript" src="tmpl_admin/vendors/select2/js/select2.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js">
-        </script>
-        <script type="text/javascript" src="tmpl_admin/vendors/wow/js/wow.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js">
-        </script>
-        <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/autosize/js/jquery.autosize.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/datetimepicker/js/DateTimePicker.min.js"></script>
-        <script type="text/javascript" src="tmpl_admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
+        </div>
 
-        <script type="text/javascript" src="tmpl_admin/vendors/chosen/js/chosen.jquery.js"></script>
-        <!-- end of plugin scripts -->
-        <!--Page level scripts-->
-        <script type="text/javascript">
-            $(document).on("click", "#edit-data", function() {
+        <div class="modal fade slideExpandUp" id="m-edit-data" role="dialog" aria-labelledby="Modallabel3dsign">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header bg-info ">
+                        <h4 class="modal-title text-white" id="Modallabel3dsign">Edit Hasil</h4>
+                    </div>
 
-                var id = $(this).data('id');
+                    <div class="modal-body body-edit">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection
+@section('js')
+    <!--  plugin scripts -->
+    <script type="text/javascript" src="tmpl_admin/vendors/select2/js/select2.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.scroller.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/bootstrapvalidator/js/bootstrapValidator.min.js">
+    </script>
+    <script type="text/javascript" src="tmpl_admin/vendors/wow/js/wow.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/sweetalert/js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-timepicker/js/bootstrap-timepicker.min.js">
+    </script>
+    <script type="text/javascript" src="tmpl_admin/vendors/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/autosize/js/jquery.autosize.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/jasny-bootstrap/js/inputmask.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/datetimepicker/js/DateTimePicker.min.js"></script>
+    <script type="text/javascript" src="tmpl_admin/vendors/j_timepicker/js/jquery.timepicker.min.js"></script>
+
+    <script type="text/javascript" src="tmpl_admin/vendors/chosen/js/chosen.jquery.js"></script>
+    <!-- end of plugin scripts -->
+    <!--Page level scripts-->
+    <script type="text/javascript">
+        $(document).on("click", "#edit-data", function() {
+
+            var id = $(this).data('id');
+            $.ajax({
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                url: "{{ route('get.edit.swab') }}"
+            }).then(function(data) {
+                if (data) {
+                    $('.body-edit').html(data);
+                    $("#m-edit-data").modal('show');
+                }
+            });
+        });
+
+        function deleteConfirmation(id) {
+            swal({
+                title: "Yakin ingin menghapus data ini?",
+                text: "jika terhapus tidak dapat dikembalikan.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "red",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+            }).then(function(e) {
+                if (e === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: 'DELETE',
+                        // method: 'DELETE',
+                        url: "/swab/" + id,
+                        success: function(data) {
+                            if (data.alertdelete === true) {
+                                swal({
+                                    title: 'Sukses!',
+                                    text: 'Data Berhasil dihapus',
+                                    type: 'success'
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            } else {
+                                location.reload();
+                            }
+                        }
+                    })
+                } else {
+                    location.reload();
+                }
+            });
+        };
+        $(".chzn-select").chosen({
+            allow_single_deselect: true
+        });
+
+        $('.bt-src').click(function() {
+            var id = $('#booking').find('option:selected').val();
+            if (id != null) {
                 $.ajax({
                     type: 'POST',
+                    url: "{{ route('src.book') }}",
                     data: {
                         id: id
-                    },
-                    url: "{{ route('get.edit.swab') }}"
+                    }
                 }).then(function(data) {
-                    if (data) {
-                        $('.body-edit').html(data);
-                        $("#m-edit-data").modal('show');
-                    }
+                    console.log(data);
+                    $('#id').val(data.id);
+                    $('#jk').val(data.jenis_kelamin);
+                    $('#umur').val(data.umur);
+                    $('#alamat').val(data.alamat);
+                    $('#tanggal').val(data.tanggal);
                 });
-            });
+            }
 
-            function deleteConfirmation(id) {
-                swal({
-                    title: "Yakin ingin menghapus data ini?",
-                    text: "jika terhapus tidak dapat dikembalikan.",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "red",
-                    confirmButtonText: "Ya",
-                    cancelButtonText: "Tidak",
-                }).then(function(e) {
-                    if (e === true) {
-                        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                        $.ajax({
-                            type: 'DELETE',
-                            // method: 'DELETE',
-                            url: "/swab/" + id,
-                            success: function(data) {
-                                if (data.alertdelete === true) {
-                                    swal({
-                                        title: 'Sukses!',
-                                        text: 'Data Berhasil dihapus',
-                                        type: 'success'
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                } else {
-                                    location.reload();
-                                }
-                            }
-                        })
-                    } else {
-                        location.reload();
-                    }
-                });
-            };
-            $(".chzn-select").chosen({
-                allow_single_deselect: true
-            });
+        });
 
-            $('.bt-src').click(function() {
-                var id = $('#booking').find('option:selected').val();
-                if (id != null) {
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('src.book') }}",
-                        data: {
-                            id: id
-                        }
-                    }).then(function(data) {
-                        console.log(data);
-                        $('#id').val(data.id);
-                        $('#jk').val(data.jenis_kelamin);
-                        $('#umur').val(data.umur);
-                        $('#alamat').val(data.alamat);
-                        $('#tanggal').val(data.tanggal);
-                    });
-                }
-
-            });
-
-        </script>
-        <script type="text/javascript" src="tmpl_admin/js/pages/sweet_alerts.js"></script>
-        <script type="text/javascript" src="tmpl_admin/js/pages/datatable.js"></script>
-        <script type="text/javascript" src="tmpl_admin/js/pages/modals.js"></script>
-        <!-- end of global scripts-->
-    @endsection
+    </script>
+    <script type="text/javascript" src="tmpl_admin/js/pages/sweet_alerts.js"></script>
+    <script type="text/javascript" src="tmpl_admin/js/pages/datatable.js"></script>
+    <script type="text/javascript" src="tmpl_admin/js/pages/modals.js"></script>
+    <!-- end of global scripts-->
+@endsection

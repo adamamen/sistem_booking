@@ -145,7 +145,6 @@
                             <table class="table table-striped table-bordered table-hover" id="sample_1">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Umur</th>
@@ -160,7 +159,7 @@
                                     @endphp
                                     @foreach ($data as $datas)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+
                                             <td>{{ $datas->nama }}</td>
                                             <td>{{ $datas->jenis_kelamin }}</td>
                                             <td>{{ $datas->umur }}</td>

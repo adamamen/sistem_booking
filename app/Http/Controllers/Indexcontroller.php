@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Swab;
 use App\Models\Userclient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -56,7 +57,9 @@ class Indexcontroller extends Controller
 
     function hasil_index()
     {
-        return view('front.hasil.index');
+        $dswab = Swab::select('booking.*', 'swab.id as id_swab', 'swab.hasil as hasil')->join('booking', 'swab.id_booking', 'booking.id')->get();
+
+        return view('front.hasil.index', ['data' => $dswab]);
     }
 
     function booking_post(Request $request)

@@ -66,7 +66,6 @@
                             <table class="table table-striped table-bordered table-hover" id="sample_1">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Password</th>
@@ -80,7 +79,6 @@
                                     @endphp
                                     @foreach ($data as $datas)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
                                             <td>{{ $datas->name }}</td>
                                             <td>{{ $datas->email }}</td>
                                             <td></td>
