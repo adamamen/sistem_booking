@@ -213,7 +213,7 @@ z-index: 999999">
         });
 
         $(document).ready(function() {
-            $('#sample_1').DataTable({
+            $('.table-hover').DataTable({
                 "order": [
                     [0, "asc"]
                 ]
