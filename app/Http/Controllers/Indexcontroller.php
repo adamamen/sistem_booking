@@ -50,7 +50,7 @@ class Indexcontroller extends Controller
     {
         $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->get()->toArray();
 
-        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->get()->toArray();
+        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
         $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
         // dd($datasisa);
         if (empty($cek)) {

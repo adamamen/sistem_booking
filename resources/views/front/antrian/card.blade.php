@@ -22,7 +22,7 @@
                         <div class="card-header" style="font-size: 25px; align-self: center">
                             Antrian</div>
                         <div class="card-block" style="text-align: center">
-                            <p class="card-text" style="font-size: 30px">SEDANG BERKALAN ANTRIAN KE-</p>
+                            <p class="card-text" style="font-size: 30px">SEDANG BERJALAN ANTRIAN KE-</p>
                             <p class="card-text" style="font-size: 120px">
                                 {{ $datasisa[0]['no_antrian'] }}/{{ count($dataall) }}
                             </p>
