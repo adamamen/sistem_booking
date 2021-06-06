@@ -76,7 +76,7 @@
                                 <tbody>
                                     @foreach ($data as $datas)
                                         <tr>
-                                            <td>{{ $datas->nama }}</td>
+                                            <td>{{ $datas->name }}</td>
                                             <td>{{ $datas->email }}</td>
                                             <td></td>
                                             <td>{{ $datas->alamat }}</td>
