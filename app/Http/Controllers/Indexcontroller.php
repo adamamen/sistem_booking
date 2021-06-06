@@ -81,7 +81,7 @@ class Indexcontroller extends Controller
             return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'anda sudah booking sebelumnya']);
         }
 
-        $lastnumb = Booking::select('no_antrian')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
+        $lastnumb = Booking::select('no_antrian', 'open')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
         (!empty($lastnumb)) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
         (!empty($lastnumb)) ? $open = $lastnumb->open : $open = '0';
 
