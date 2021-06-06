@@ -50,7 +50,7 @@ class Bookingcontroller extends Controller
         ]);
 
         $lastnumb = Booking::select('no_antrian', 'open')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
-        // dd($lastnumb);
+        dd($lastnumb);
         Userclient::whereid($request->id_pasien)->update([
             'book_flag' => '1'
         ]);
