@@ -89,6 +89,38 @@
         border-color: #05a;
     }
 
+    .signup {
+        background: #28d;
+        border-color: transparent;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .signup:hover {
+        background: #17c;
+    }
+
+    /* Buttons' focus effect */
+    .signup:focus {
+        border-color: #05a;
+    }
+
+    .signup input {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        border-width: 1px;
+        border-style: solid;
+        padding: 16px;
+        outline: 0;
+        font-family: inherit;
+        font-size: 0.95em;
+    }
+
+    .signup a {
+        padding: 12px;
+    }
+
 </style>
 @if (session('status'))
     <h2 class="login-header">{{ session('mssg') }}</h2>
@@ -103,6 +135,10 @@
         <p><input type="email" name="email" placeholder="Email"></p>
         <p><input type="password" name="password" placeholder="Password"></p>
         <p><input type="submit" value="Log in"></p>
+        <p style="text-align: center">Belum punya akun?</p>
+        <a href="{{ route('register.index') }}">
+            <p><input class="signup" value="Sign Up" style="text-align: center"></p>
+        </a>
     </form>
 </div>
 

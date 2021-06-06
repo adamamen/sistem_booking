@@ -55,12 +55,12 @@ class Bookingcontroller extends Controller
             'book_flag' => '1'
         ]);
 
-        $nama = Userclient::select('nama')->whereid($request->nama)->first();
+        $nama = Userclient::select('name')->whereid($request->nama)->first();
 
         (!empty($lastnumb)) ? $lastnumbf = $lastnumb->no_antrian : $lastnumbf = '0';
         (!empty($lastnumb)) ? $open = $lastnumb->open : $open = '0';
         $booking = new Booking();
-        $booking->nama = $nama->nama;
+        $booking->nama = $nama->name;
         $booking->jenis_kelamin = $request->jenis_kelamin;
         $booking->umur = $request->umur;
         $booking->alamat = $request->alamat;
@@ -74,7 +74,8 @@ class Bookingcontroller extends Controller
 
 
 
-        return redirect()->route('index');
+        return redirect()->route('booking.index')
+            ->with('success', 'Booking created successfully.');
     }
 
     /**

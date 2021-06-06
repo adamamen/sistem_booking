@@ -96,7 +96,9 @@
     <h2 class="login-header">{{ session('mssg') }}</h2>
 @endif
 @if (session('status1'))
-    <h2 class="login-header">{{ session('mssg') }} <a href="{{ route('index') }}"> Home </a></h2>
+    <h2 class="login-header">{{ session('mssg') . session('no') }} <br> <a style="color: white"
+            href="{{ route('antrianc.index') }}"> Klik disini </a> Untuk masuk ke halaman antrian
+    </h2>
 @endif
 <div class="login">
     <div class="login-triangle"></div>

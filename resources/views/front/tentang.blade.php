@@ -39,7 +39,61 @@
 
 <body>
 
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container d-flex align-items-center">
 
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="/">Booking<span>Swab</span></a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    {{-- <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li> --}}
+                    @if (Auth::guard('client')->check())
+                        <li><a href="{{ route('bookingc.index') }}">Booking</a></li>
+                        <li><a href="{{ route('antrianc.index') }}">Antrian</a></li>
+                        <li><a href="{{ route('hasilc.index') }}">Hasil Swab</a></li>
+                    @endif
+                    @if (!Auth::guard('client')->check())
+                        <li><a href="{{ route('login.index') }}">Login</a></li>
+                        <li><a href="{{ route('register.index') }}">Signup</a></li>
+                    @endif
+                    <li><a href="{{ route('tentang') }}">Tentang</a></li>
+                    @if (Auth::guard('client')->check())
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                    @endif
+
+                    {{-- <li class="drop-down"><a href="">Drop Down</a>
+                        <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li class="drop-down"><a href="#">Drop Down 2</a>
+                                <ul>
+                                    <li><a href="#">Deep Drop Down 1</a></li>
+                                    <li><a href="#">Deep Drop Down 2</a></li>
+                                    <li><a href="#">Deep Drop Down 3</a></li>
+                                    <li><a href="#">Deep Drop Down 4</a></li>
+                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                            <li><a href="#">Drop Down 5</a></li>
+                        </ul>
+                    </li> --}}
+
+
+                    {{-- <li class="get-started"><a href="#about">Get Started</a></li> --}}
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">

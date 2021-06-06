@@ -43,21 +43,26 @@ class Indexcontroller extends Controller
 
     function antrian_index()
     {
+        return view('front.antrian.index');
+    }
+
+    function antrian_data()
+    {
         $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->get()->toArray();
 
         $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->get()->toArray();
         $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
         // dd($datasisa);
         if (empty($cek)) {
-            return redirect()->route('index');
+            return false;
         } else {
-            return view('front.antrian.index', ['datasisa' => $datasisa, 'dataall' => $dataall, 'mydata' => $cek]);
+            return view('front.antrian.card', ['datasisa' => $datasisa, 'dataall' => $dataall, 'mydata' => $cek]);
         }
     }
 
     function hasil_index()
     {
-        $dswab = Swab::select('booking.*', 'swab.id as id_swab', 'swab.hasil as hasil')->join('booking', 'swab.id_booking', 'booking.id')->get();
+        $dswab = Swab::select('booking.*', 'swab.id as id_swab', 'swab.hasil as hasil')->join('booking', 'swab.id_booking', 'booking.id')->where('booking.id_pasien', Auth::guard('client')->user()->id)->get();
 
         return view('front.hasil.index', ['data' => $dswab]);
     }
@@ -105,6 +110,6 @@ class Indexcontroller extends Controller
             'book_flag' => '1'
         ]);
 
-        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking berhasil diinput']);
+        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking berhasil diinput, nomor antrian anda adalah ', 'no' => $lastnumbf + 1]);
     }
 }

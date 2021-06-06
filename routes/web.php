@@ -72,6 +72,7 @@ Route::middleware(['auth:client'])->group(function () {
     Route::post('/bookings/post', [Indexcontroller::class, 'booking_post'])->name('bookingc.post');
 
     Route::get('/antrians', [Indexcontroller::class, 'antrian_index'])->name('antrianc.index');
+    Route::get('/antrians/data', [Indexcontroller::class, 'antrian_data'])->name('antrianc.data');
     Route::get('/hasil', [Indexcontroller::class, 'hasil_index'])->name('hasilc.index');
 });
 

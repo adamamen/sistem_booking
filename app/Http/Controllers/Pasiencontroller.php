@@ -90,13 +90,13 @@ class Pasiencontroller extends Controller
     {
         if ($request->password == null) {
             Userclient::whereid($request->id)->update([
-                'nama' => $request->nama,
+                'name' => $request->nama,
                 'email' => $request->email,
                 'alamat' => $request->alamat
             ]);
         } else {
             Userclient::whereid($request->id)->update([
-                'nama' => $request->nama,
+                'name' => $request->nama,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'alamat' => $request->alamat
