@@ -17,7 +17,7 @@
                 <span class="input-group-addon input_jenis_kelamin"><i class="fa fa-money text-primary"></i></span>
                 {{-- <input type="text" class="form-control  form-control-md" value="{{ $data->jenis_kelamin }}" name="jenis_kelamin" placeholder="jenis_kelamin" required> --}}
                 <select name="jenis_kelamin" class="form-control" id="gender">
-                    <option selected value="Pria" @if (old('gender') == 'Laki-laki') {{ 'selected' }} @endif>Laki-laki</option>
+                    <option selected value="Laki-laki" @if (old('gender') == 'Laki-laki') {{ 'selected' }} @endif>Laki-laki</option>
                     <option value="Perempuan" @if (old('gender') == 'Perempuan') {{ 'selected' }} @endif>Perempuan</option>
                 </select>
             </div>
