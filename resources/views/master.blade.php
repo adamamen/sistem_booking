@@ -212,6 +212,14 @@ z-index: 999999">
             orientation: "top"
         });
 
+        $(document).ready(function() {
+            $('#sample_1').DataTable({
+                "order": [
+                    [0, "asc"]
+                ]
+            });
+        });
+
     </script>
     <!--end of global scripts-->
     @yield('js')
