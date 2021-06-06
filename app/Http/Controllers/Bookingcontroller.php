@@ -74,8 +74,7 @@ class Bookingcontroller extends Controller
 
 
 
-        return redirect()->route('booking.index')
-            ->with('success', 'Booking created successfully.');
+        return redirect()->route('index');
     }
 
     /**
