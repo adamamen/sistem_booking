@@ -27,7 +27,8 @@
                 <div class="card card-inverse card-warning m-t-35">
                     <div class="card-header bg-white" style="font-size: 25px; align-self: center">Antrian</div>
                     <div class="card-block" style="text-align: center">
-                        <p class="card-text" style="font-size: 100px">
+                        <p class="card-text" style="font-size: 30px">SEDANG BERKALAN ANTRIAN KE-</p>
+                        <p class="card-text" style="font-size: 120px">
                             {{ $datasisa[0]['no_antrian'] }}/{{ count($dataall) }}
                         </p>
                         <div class="row">
