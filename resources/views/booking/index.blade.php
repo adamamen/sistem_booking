@@ -155,9 +155,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
                                     @foreach ($data as $datas)
                                         <tr>
-                                            <td></td>
+                                            <td>{{ $no++ }}</td>
                                             <td>{{ $datas->nama }}</td>
                                             <td>{{ $datas->jenis_kelamin }}</td>
                                             <td>{{ $datas->umur }}</td>
