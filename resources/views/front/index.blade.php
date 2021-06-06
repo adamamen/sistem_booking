@@ -59,11 +59,14 @@
                         <li><a href="{{ route('bookingc.index') }}">Booking</a></li>
                         <li><a href="{{ route('antrianc.index') }}">Antrian</a></li>
                         <li><a href="{{ route('hasilc.index') }}">Hasil Swab</a></li>
-                        <li><a href="{{ route('logout') }}">Logout</a></li>
                     @endif
                     @if (!Auth::guard('client')->check())
                         <li><a href="{{ route('login.index') }}">Login</a></li>
                         <li><a href="{{ route('register.index') }}">Signup</a></li>
+                    @endif
+                    <li><a href="{{ route('tentang') }}">Tentang</a></li>
+                    @if (Auth::guard('client')->check())
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
                     @endif
 
                     {{-- <li class="drop-down"><a href="">Drop Down</a>

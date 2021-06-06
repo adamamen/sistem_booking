@@ -58,6 +58,10 @@ Route::post('/register/post', [Authcontroller::class, 'post_register'])->name('r
 Route::get('/login', [Indexcontroller::class, 'login_index'])->name('login.index');
 Route::post('/login/post', [Authcontroller::class, 'post_login'])->name('login.post');
 
+Route::get('/tentang', function () {
+    return view('front.tentang');
+})->name('tentang');
+
 Route::middleware(['auth:client'])->group(function () {
     Route::get('/logout', function () {
         Auth::guard('client')->logout();
