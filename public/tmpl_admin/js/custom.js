@@ -386,12 +386,12 @@ $(document).ready(function () {
         autoReinitialiseDelay: 100
     });
 
-    $("#request_btn, #notifications_section, #messages_section").on("click", function () {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        $('#request_list, #notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(animationEnd, function () {
-            $("#request_list, #notifications_dropdown, #messages_dropdown").removeClass('animated fadeIn');
-        });
-    });
+    // $("#request_btn, #notifications_section, #messages_section").on("click", function () {
+    //     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    //     $('#request_list, #notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(animationEnd, function () {
+    //         $("#request_list, #notifications_dropdown, #messages_dropdown").removeClass('animated fadeIn');
+    //     });
+    // });
 
     $("#menu>.dropdown_menu").hover(function () {
         var sideoffset = $("#menu").offset();

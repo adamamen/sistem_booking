@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Notif;
 use App\Models\Swab;
 use App\Models\Userclient;
 use Carbon\Carbon;
@@ -111,5 +112,18 @@ class Indexcontroller extends Controller
         ]);
 
         return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Nomor antrian anda adalah ', 'no' => $lastnumbf + 1]);
+    }
+
+    function get_notif()
+    {
+        $data = Notif::whereid_pasien(Auth::guard('client')->user()->id)->join('userclient', 'notif.id_pasien', 'userclient.id')->get();
+
+        return view('front.ndata', ['data' => $data]);
+    }
+    function get_notifj()
+    {
+        $data = Notif::whereid_pasien(Auth::guard('client')->user()->id)->join('userclient', 'notif.id_pasien', 'userclient.id')->get()->toArray();
+
+        return view('front.jdata', ['data' => $data]);
     }
 }

@@ -74,6 +74,9 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/antrians', [Indexcontroller::class, 'antrian_index'])->name('antrianc.index');
     Route::get('/antrians/data', [Indexcontroller::class, 'antrian_data'])->name('antrianc.data');
     Route::get('/hasil', [Indexcontroller::class, 'hasil_index'])->name('hasilc.index');
+
+    Route::get('/get/notif', [Indexcontroller::class, 'get_notif'])->name('get.notif');
+    Route::get('/get/notifj', [Indexcontroller::class, 'get_notifj'])->name('get.notifj');
 });
 
 Route::get('/', [Indexcontroller::class, 'index'])->name('index');

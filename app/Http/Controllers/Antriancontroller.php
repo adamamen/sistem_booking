@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Notif;
 use Illuminate\Http\Request;
 
 class Antriancontroller extends Controller
@@ -21,6 +22,28 @@ class Antriancontroller extends Controller
             'flag' => '1'
         ]);
 
+        $antr1 = $request->antrian + 1;
+        $datapasien1 = Booking::select('*')->whereno_antrian($antr1)->wheretanggal(date('d-m-Y'))->first();
+        if ($datapasien1) {
+            # code...
+            Notif::insert([
+                'id_pasien' => $datapasien1->id_pasien,
+                'descript' => 'GILIRAN ANDA',
+                'flag_open' => '0',
+            ]);
+        }
+
+        $antr = $request->antrian + 2;
+        $datapasien = Booking::select('*')->whereno_antrian($antr)->wheretanggal(date('d-m-Y'))->first();
+        if ($datapasien) {
+            # code...
+            Notif::insert([
+                'id_pasien' => $datapasien->id_pasien,
+                'descript' => 'ANTRIAN ANDA AKAN DIPANGGIL UNTUK SELANJUTNYA',
+                'flag_open' => '0',
+            ]);
+        }
+
         return redirect()->route('antrian.index');
     }
 
@@ -29,6 +52,30 @@ class Antriancontroller extends Controller
         Booking::wheretanggal($request->tanggal)->update([
             'open' => '1'
         ]);
+
+
+
+        $datapasien = Booking::select('*')->whereno_antrian('1')->wheretanggal(date('d-m-Y'))->first();
+        $antr = $datapasien->no_antrian + 1;
+        $datanext = Booking::select('*')->whereno_antrian($antr)->wheretanggal(date('d-m-Y'))->first();
+        // dd($antr);
+        if ($datapasien) {
+            Notif::insert([
+                'id_pasien' => $datapasien->id_pasien,
+                'descript' => 'GILIRAN ANDA',
+                'flag_open' => '0',
+            ]);
+            # code...
+
+        }
+
+        if ($datanext) {
+            Notif::insert([
+                'id_pasien' => $datanext->id_pasien,
+                'descript' => 'ANTRIAN ANDA AKAN DIPANGGIL UNTUK SELANJUTNYA',
+                'flag_open' => '0',
+            ]);
+        }
 
         return redirect()->route('antrian.index');
     }

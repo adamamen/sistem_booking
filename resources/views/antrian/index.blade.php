@@ -87,7 +87,9 @@
                         <div style="text-align: center">
                             <form method="POST" action="{{ route('antrian.post') }}">
                                 @csrf
+                                <input name="id_pasien" hidden value="{{ $datasisa[0]['id_pasien'] }}">
                                 <input name="id" hidden value="{{ $datasisa[0]['id'] }}">
+                                <input name="antrian" hidden value="{{ $datasisa[0]['no_antrian'] }}">
                                 <button type="submit" class="btn btn-success">Lanjut ></button>
                             </form>
 
@@ -106,10 +108,14 @@
         $(document).on("click", "#edit-data", function() {
 
             var id = $(this).data('id');
+            var id_pasien = $(this).data('id_pasien');
+            var antrian = $(this).data('antrian');
             $.ajax({
                 type: 'POST',
                 data: {
-                    id: id
+                    id: id,
+                    id_pasien: id_pasien,
+                    antrian: antrian
                 },
                 url: "{{ route('get.edit.booking') }}"
             }).then(function(data) {
