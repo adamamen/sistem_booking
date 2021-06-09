@@ -16,7 +16,7 @@
                     <br>
                 </div>
             @else
-                <div class="col-6 align-self-center">
+                <div class="col-8 align-self-center">
                     <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
                     <div class="card card-inverse card-warning m-t-35">
                         <div class="card-header" style="font-size: 25px; align-self: center">
@@ -44,6 +44,12 @@
 
                                 <p class="card-text" style="font-size: 26px; color: chartreuse">
                                     Giliran Anda!
+                                </p>
+                            @endif
+                            @if ($datasisa[0]['no_antrian'] + 1 == $mydata[0]['no_antrian'])
+
+                                <p class="card-text" style="font-size: 26px; color: chartreuse">
+                                    Antrian anda akan dipanggil untuk selanjutnya!
                                 </p>
                             @endif
                         </div>

@@ -77,6 +77,7 @@ Route::middleware(['auth:client'])->group(function () {
 
     Route::get('/get/notif', [Indexcontroller::class, 'get_notif'])->name('get.notif');
     Route::get('/get/notifj', [Indexcontroller::class, 'get_notifj'])->name('get.notifj');
+    Route::get('/delete/notif', [Indexcontroller::class, 'delete_notif'])->name('delete.notif');
 });
 
 Route::get('/', [Indexcontroller::class, 'index'])->name('index');

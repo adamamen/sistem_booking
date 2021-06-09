@@ -339,22 +339,6 @@
     {{-- <script type="text/javascript" src="/tmpl_admin/js/custom.js"></script> --}}
 
     <script>
-        $(document).ready(function() {
-            $(".notify_flash").on("click", function() {
-                new PNotify({
-                    title: 'Attention Seeker',
-                    text: 'Click the button to see how you can highlight the notice with the Animate module:&lt;br&gt;',
-                    type: 'warning',
-                    after_init: function(notice) {
-                        notice.attention('flash');
-                    }
-                });
-                return false;
-            });
-
-            PNotify.prototype.options.styling = "fontawesome";
-        });
-
         $("#request_btn, #notifications_section, #messages_section").on("click", function() {
             var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             $('#notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(

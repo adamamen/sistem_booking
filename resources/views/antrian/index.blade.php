@@ -126,6 +126,16 @@
             });
         });
 
+        $("#request_btn, #notifications_section, #messages_section").on("click", function() {
+            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            $('#notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(
+                animationEnd,
+                function() {
+                    $("#notifications_dropdown, #messages_dropdown").removeClass(
+                        'animated fadeIn');
+                });
+        });
+
         // $(document).on("click", "#edit-data", function() {
         //     $("#m-edit-data").modal('show');
         //     var id = $(this).data('id');
@@ -176,5 +186,34 @@
     <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/sweet_alerts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/datatable.js') }}"></script>
     <script type="text/javascript" src="{{ asset('tmpl_admin/js/pages/modals.js') }}"></script>
+
+    @if (Auth::guard('client')->check())
+        <script>
+            var timeOutId = 0;
+            var ajaxdata1 = function() {
+                $.ajax({
+                    url: "{{ route('get.notif') }}",
+                    type: "GET"
+                }).then(function(data) {
+                    $('#notifications').html(data);
+                    if (data) {
+                        $.ajax({
+                            url: "{{ route('get.notifj') }}",
+                            type: "GET"
+                        }).then(function(data) {
+                            $('#countn').html(data);
+
+                        });
+                    }
+                    timeOutId = setTimeout(ajaxdata1, 2000);
+                });
+            }
+            ajaxdata1();
+            timeOutId = setTimeout(ajaxdata1, 2000);
+
+        </script>
+
+    @endif
+
     <!-- end of global scripts-->
 @endsection

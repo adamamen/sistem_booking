@@ -15,7 +15,7 @@ class Indexcontroller extends Controller
 {
     function index_admin()
     {
-        return view('index.index');
+        return view('pasien.index');
     }
 
     function index()
@@ -49,11 +49,11 @@ class Indexcontroller extends Controller
 
     function antrian_data()
     {
-        $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->get()->toArray();
+        $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->wheretanggal(date('d-m-Y'))->get()->toArray();
 
         $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
         $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
-        // dd($datasisa);
+        // dd($cek);
         if (empty($cek)) {
             return false;
         } else {
@@ -85,9 +85,11 @@ class Indexcontroller extends Controller
             return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'Masukan data dengan benar']);
         }
 
-        $cek = Userclient::select('*')->whereid($request->id_pasien)->where('book_flag', '1')->first();
-        if ($cek) {
-            return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'anda sudah booking sebelumnya']);
+        $cek = Booking::select('*')->whereid_pasien($request->id_pasien)->where('tanggal', $request->tanggal)->first();
+        if ($request->tanggal < date('d-m-Y')) {
+            return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'Tidak dapat booking tanggal tersebut']);
+        } elseif ($cek) {
+            return redirect()->route('bookingc.index')->with(['status' => true, 'mssg' => 'Anda sudah booking sebelumnya']);
         }
 
         $lastnumb = Booking::select('no_antrian', 'open')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
@@ -116,7 +118,7 @@ class Indexcontroller extends Controller
 
     function get_notif()
     {
-        $data = Notif::whereid_pasien(Auth::guard('client')->user()->id)->join('userclient', 'notif.id_pasien', 'userclient.id')->get();
+        $data = Notif::select('notif.id', 'userclient.name', 'notif.descript')->whereid_pasien(Auth::guard('client')->user()->id)->join('userclient', 'notif.id_pasien', 'userclient.id')->get();
 
         return view('front.ndata', ['data' => $data]);
     }
@@ -125,5 +127,16 @@ class Indexcontroller extends Controller
         $data = Notif::whereid_pasien(Auth::guard('client')->user()->id)->join('userclient', 'notif.id_pasien', 'userclient.id')->get()->toArray();
 
         return view('front.jdata', ['data' => $data]);
+    }
+
+    function delete_notif(Request $request)
+    {
+        $a = Notif::where('id', $request->id)->delete();
+
+        if ($a) {
+            return response()->json(['stat' => true]);
+        } else {
+            return response()->json(['stat' => false]);
+        }
     }
 }

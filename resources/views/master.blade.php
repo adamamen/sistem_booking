@@ -99,12 +99,6 @@ z-index: 999999">
                         <hr />
                     </div>
                     <ul id="menu">
-                        <li class="@yield('active-ds')">
-                            <a href="/">
-                                <i class="fa fa-home"></i>
-                                <span class="link-title menu_hide">&nbsp;Dashboard</span>
-                            </a>
-                        </li>
                         <li class="@yield('active-dt')">
                             <a href="javascript:;">
                                 <i class="fa fa-database"></i>

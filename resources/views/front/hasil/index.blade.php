@@ -19,30 +19,21 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/circliful/css/jquery.circliful.css">
     <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/select2/css/select2.min.css" />
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/scroller.bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/colReorder.bootstrap.min.css" />
-    {{-- <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/datatables/css/dataTables.bootstrap.min.css" /> --}}
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/dataTables.bootstrap.css" />
-    {{-- <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/plugincss/responsive.dataTables.min.css" /> --}}
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/chosen/css/chosen.css" />
 
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/pages/tables.css" />
-
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/animate/css/animate.min.css" />
     <!-- Template Main CSS File -->
     <link href="Bocor/assets/css/style.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
     <style>
-        .bodyall {
-            padding: 0;
-            margin: 0;
-        }
+
 
     </style>
 
@@ -84,6 +75,26 @@
                     <li><a href="{{ route('tentang') }}">Tentang</a></li>
                     @if (Auth::guard('client')->check())
                         <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <div class="btn-group" hidden>
+                            <div class="notifications request_section no-bg">
+                                <a class="btn btn-default btn-sm messages jn" id="request_btn">
+                                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <div class="notifications messages no-bg ">
+                                <a class="btn btn-default btn-sm jn" data-toggle="dropdown" id="notifications_section">
+                                    <i style="color: white" class="fa fa-bell-o"></i><span id="countn"
+                                        class="badge badge-pill badge-danger notifications_badge_top"></span>
+                                </a>
+                                <div class="dropdown-menu drop_box_align" role="menu" id="notifications_dropdown">
+                                    <div id="notifications">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     {{-- <li class="drop-down"><a href="">Drop Down</a>
@@ -166,22 +177,7 @@
     <script src="Bocor/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="Bocor/assets/vendor/venobox/venobox.min.js"></script>
     <script src="Bocor/assets/vendor/aos/aos.js"></script>
-    <script type="text/javascript" src="tmpl_admin/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/tmpl_admin/js/components.js"></script>
 
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/js/pluginjs/dataTables.tableTools.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.colReorder.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/js/pluginjs/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/dataTables.rowReorder.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.bootstrap.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/datatables/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="tmpl_admin/vendors/chosen/js/chosen.jquery.js"></script>
     <script>
         $('#tb-hasil').DataTable({
             dom: "<'table-responsive'><'row'<'col-md-5 col-12'><'col-md-7 col-12'>>",
@@ -189,7 +185,46 @@
             // order: [[ 0, "desc" ]],
         });
 
+        $("#request_btn, #notifications_section, #messages_section").on("click", function() {
+            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            $('#notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(
+                animationEnd,
+                function() {
+                    $("#notifications_dropdown, #messages_dropdown").removeClass(
+                        'animated fadeIn');
+                });
+        });
+
     </script>
+
+    @if (Auth::guard('client')->check())
+        <script>
+            var timeOutId = 0;
+            var ajaxdata1 = function() {
+                $.ajax({
+                    url: "{{ route('get.notif') }}",
+                    type: "GET"
+                }).then(function(data) {
+                    $('#notifications').html(data);
+                    if (data) {
+                        $.ajax({
+                            url: "{{ route('get.notifj') }}",
+                            type: "GET"
+                        }).then(function(data) {
+                            $('#countn').html(data);
+
+                        });
+                    }
+                    timeOutId = setTimeout(ajaxdata1, 2000);
+                });
+            }
+            ajaxdata1();
+            timeOutId = setTimeout(ajaxdata1, 2000);
+
+        </script>
+
+    @endif
+
     <!-- Template Main JS File -->
     <script src="Bocor/assets/js/main.js"></script>
 

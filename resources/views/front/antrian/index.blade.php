@@ -75,6 +75,26 @@
                     <li><a href="{{ route('tentang') }}">Tentang</a></li>
                     @if (Auth::guard('client')->check())
                         <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <div class="btn-group" hidden>
+                            <div class="notifications request_section no-bg">
+                                <a class="btn btn-default btn-sm messages jn" id="request_btn">
+                                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <div class="notifications messages no-bg ">
+                                <a class="btn btn-default btn-sm jn" data-toggle="dropdown" id="notifications_section">
+                                    <i style="color: white" class="fa fa-bell-o"></i><span id="countn"
+                                        class="badge badge-pill badge-danger notifications_badge_top"></span>
+                                </a>
+                                <div class="dropdown-menu drop_box_align" role="menu" id="notifications_dropdown">
+                                    <div id="notifications">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     {{-- <li class="drop-down"><a href="">Drop Down</a>

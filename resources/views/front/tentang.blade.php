@@ -19,14 +19,16 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/circliful/css/jquery.circliful.css">
     <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/aos/aos.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/animate/css/animate.min.css" />
     <link href="Bocor/assets/css/style.css" rel="stylesheet">
 
     <!-- =======================================================
@@ -67,6 +69,26 @@
                     <li><a href="{{ route('tentang') }}">Tentang</a></li>
                     @if (Auth::guard('client')->check())
                         <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <div class="btn-group" hidden>
+                            <div class="notifications request_section no-bg">
+                                <a class="btn btn-default btn-sm messages jn" id="request_btn">
+                                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <div class="notifications messages no-bg ">
+                                <a class="btn btn-default btn-sm jn" data-toggle="dropdown" id="notifications_section">
+                                    <i style="color: white" class="fa fa-bell-o"></i><span id="countn"
+                                        class="badge badge-pill badge-danger notifications_badge_top"></span>
+                                </a>
+                                <div class="dropdown-menu drop_box_align" role="menu" id="notifications_dropdown">
+                                    <div id="notifications">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     {{-- <li class="drop-down"><a href="">Drop Down</a>
@@ -140,6 +162,48 @@
 
     <!-- Template Main JS File -->
     <script src="Bocor/assets/js/main.js"></script>
+
+    <script>
+        $("#request_btn, #notifications_section, #messages_section").on("click", function() {
+            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+            $('#notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(
+                animationEnd,
+                function() {
+                    $("#notifications_dropdown, #messages_dropdown").removeClass(
+                        'animated fadeIn');
+                });
+        });
+
+    </script>
+
+    @if (Auth::guard('client')->check())
+        <script>
+            var timeOutId = 0;
+            var ajaxdata1 = function() {
+                $.ajax({
+                    url: "{{ route('get.notif') }}",
+                    type: "GET"
+                }).then(function(data) {
+                    $('#notifications').html(data);
+                    if (data) {
+                        $.ajax({
+                            url: "{{ route('get.notifj') }}",
+                            type: "GET"
+                        }).then(function(data) {
+                            $('#countn').html(data);
+
+                        });
+                    }
+                    timeOutId = setTimeout(ajaxdata1, 2000);
+                });
+            }
+            ajaxdata1();
+            timeOutId = setTimeout(ajaxdata1, 2000);
+
+        </script>
+
+    @endif
+
 
 </body>
 
