@@ -18,7 +18,7 @@ class Bookingcontroller extends Controller
     public function index()
     {
         $data = Booking::all();
-        $user = Userclient::select('*')->wherebook_flag('0')->get();
+        $user = Userclient::all();
         return view('booking.index', ['data' => $data, 'user' => $user]);
     }
 
@@ -48,6 +48,15 @@ class Bookingcontroller extends Controller
             'alamat' => 'required',
             'tanggal' => 'required'
         ]);
+
+        $cek = Booking::select('*')->whereid_pasien($request->nama)->where('tanggal', $request->tanggal)->first();
+        if ($request->tanggal < date('d-m-Y')) {
+            return redirect()->route('booking.index')
+                ->with('success', 'Tidak dapat booking tanggal tersebut.');
+        } elseif ($cek) {
+            return redirect()->route('booking.index')
+                ->with('success', 'Anda sudah booking sebelumnya.');
+        }
 
         $lastnumb = Booking::select('no_antrian', 'open')->wheretanggal($request->tanggal)->orderby('no_antrian', 'desc')->first();
         // dd($lastnumb);

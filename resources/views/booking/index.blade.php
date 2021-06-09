@@ -41,6 +41,13 @@
             <div class="col-12 data_tables">
                 <!-- BEGIN EXAMPLE1 TABLE PORTLET-->
                 <div class="card">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
+                            </button>
+                            {{ $message }}
+                        </div>
+                    @endif
                     <div class="card-header bg-white">
                         <i class="fa fa-database"></i>Data Booking
                     </div>
@@ -58,7 +65,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content ">
                                         <div class="modal-header bg-info ">
-                                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Golongan
+                                            <h4 class="modal-title text-white" id="Modallabel3dsign">Tambah Data Booking
                                             </h4>
                                         </div>
                                         <div class="modal-body">
