@@ -19,16 +19,18 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/circliful/css/jquery.circliful.css">
     <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/aos/aos.css" rel="stylesheet">
-
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/animate/css/animate.min.css" />
     <!-- Template Main CSS File -->
     <link href="Bocor/assets/css/style.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
     <style>
         .bodyall {
             padding: 0;
