@@ -1,4 +1,4 @@
-<div class="row d-flex align-items-center" style="height: 580px">
+<div class="row d-flex align-items-center" style="height: 650px">
     <div class=" col-lg-12 py-5 py-lg-0 order-2 order-lg-1">
         <div class="row justify-content-center">
             @if ($datasisa[0]['open'] == '0')

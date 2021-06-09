@@ -19,7 +19,7 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
+
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/custom.css" />
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/circliful/css/jquery.circliful.css">
     <link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
     <link href="Bocor/assets/vendor/aos/aos.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/animate/css/animate.min.css" />
     <!-- Template Main CSS File -->
+    <link type="text/css" rel="stylesheet" href="/tmpl_admin/css/components.css" />
     <link href="Bocor/assets/css/style.css" rel="stylesheet">
     <style>
         .bodyall {
