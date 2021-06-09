@@ -166,6 +166,34 @@
 
     </script>
 
+    @if (Auth::guard('client')->check())
+        <script>
+            var timeOutId = 0;
+            var ajaxdata1 = function() {
+                $.ajax({
+                    url: "{{ route('get.notif') }}",
+                    type: "GET"
+                }).then(function(data) {
+                    $('#notifications').html(data);
+                    if (data) {
+                        $.ajax({
+                            url: "{{ route('get.notifj') }}",
+                            type: "GET"
+                        }).then(function(data) {
+                            $('#countn').html(data);
+
+                        });
+                    }
+                    timeOutId = setTimeout(ajaxdata1, 2000);
+                });
+            }
+            ajaxdata1();
+            timeOutId = setTimeout(ajaxdata1, 2000);
+
+        </script>
+
+    @endif
+
 </body>
 
 </html>
