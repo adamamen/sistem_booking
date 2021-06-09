@@ -15,7 +15,8 @@ class Indexcontroller extends Controller
 {
     function index_admin()
     {
-        return view('pasien.index');
+        $data = Userclient::all();
+        return view('pasien.index', ['data' => $data]);
     }
 
     function index()
