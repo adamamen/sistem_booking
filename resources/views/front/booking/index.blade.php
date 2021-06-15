@@ -116,6 +116,20 @@
         <p><input type="text" name="umur" placeholder="Umur"></p>
         <p><input type="text" name="alamat" placeholder="Alamat"></p>
         <p><input type="text" name="tanggal" class="datepicker" readonly placeholder="tanggal"></p>
+        <p>
+            <select name="jenis" class="form-control" id="jenis">
+                <option disabled selected value="">Jenis Test
+                </option>
+                <option value="antigen">
+                    Antigen</option>
+                <option value="antibody">
+                    Antibody</option>
+                <option value="pcs">
+                    PCS</option>
+            </select>
+        </p>
+        <p><input type="text" placeholder="Harga" id="harga" readonly></p>
+        <p><input type="text" name="harga" id="harga-raw" readonly hidden></p>
         <p><input type="submit" value="Simpan"></p>
     </form>
 </div>
@@ -138,13 +152,30 @@
         orientation: "top"
     });
 
+    // var jtes = $('#jenis option:selected').val();
+    // console.log(jtes);
+
+    $('#jenis').change(function() {
+        var vjen = $(this).find('option').filter(':selected').val();
+        if (vjen == 'antigen') {
+            $('#harga').val('Rp. ' + (700000).toLocaleString().replace(/,/g, ".", ))
+            $('#harga-raw').val(700000)
+        } else if (vjen == 'antibody') {
+            $('#harga').val('Rp. ' + (150000).toLocaleString().replace(/,/g, ".", ))
+            $('#harga-raw').val(150000)
+        } else if (vjen == 'pcs') {
+            $('#harga').val('Rp. ' + (900000).toLocaleString().replace(/,/g, ".", ))
+            $('#harga-raw').val(900000)
+        }
+    });
+
 </script>
 
 @if (session('status1'))
     <script>
         swal({
             title: 'Selamat!',
-            text: "{{ session('mssg') . session('no') }}",
+            text: "{{ session('mssg') }}",
             type: 'success'
         }).then(function() {
             window.location = "{{ route('antrianc.index') }}";

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Bukti;
+use App\Models\Notif;
 use App\Models\Userclient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class Bookingcontroller extends Controller
 {
@@ -77,11 +80,27 @@ class Bookingcontroller extends Controller
         $booking->id_pasien = $request->nama;
         $booking->created_at = Carbon::now();
         $booking->flag = '0';
-        $booking->no_antrian = $lastnumbf + 1;
+        // $booking->no_antrian = $lastnumbf + 1;
         $booking->open = $open;
+        $booking->harga = $request->harga;
+        $booking->jenis = $request->jenis;
         $booking->save();
 
+        $idbook = Booking::select('id')->whereid_pasien($request->nama)->wheretanggal($request->tanggal)->first();
+        Bukti::insert([
+            'id_booking' => $idbook->id,
+            'codepembayaran' => Str::random(10),
+            'files' => '',
+            'flag' => '0',
+            'created_at' => Carbon::now()
+        ]);
+        Notif::insert([
+            'id_pasien' => $request->nama,
+            'descript' => 'Segera lakukan pembayaran & upload bukti pembayaran dengan benar',
+            'flag_open' => '1',
+        ]);
 
+        // dd($idbook);
 
         return redirect()->route('booking.index')
             ->with('success', 'Booking created successfully.');

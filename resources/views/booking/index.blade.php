@@ -133,6 +133,38 @@
                                                                     name="tanggal" placeholder="Tanggal" readonly required>
                                                             </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="email" class="col-form-label"> Jenis Test</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input_email"><i
+                                                                        class="fa fa-table text-primary"></i></span>
+                                                                <select name="jenis" class="form-control" id="jenis">
+                                                                    <option disabled selected value="">Jenis Test
+                                                                    </option>
+                                                                    <option value="antigen">
+                                                                        Antigen</option>
+                                                                    <option value="antibody">
+                                                                        Antibody</option>
+                                                                    <option value="pcs">
+                                                                        PCS</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="email" class="col-form-label"> Harga</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input_email"><i
+                                                                        class="fa fa-money text-primary"></i></span>
+                                                                <input class="form-control form-control-md" type="text"
+                                                                    placeholder="Harga" id="harga" readonly>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                        <input type="text" name="harga" id="harga-raw" readonly hidden>
+
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -158,6 +190,7 @@
                                         <th>Umur</th>
                                         <th>Alamat</th>
                                         <th>Tanggal</th>
+                                        <th>Jenis</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -173,6 +206,7 @@
                                             <td>{{ $datas->umur }}</td>
                                             <td>{{ $datas->alamat }}</td>
                                             <td>{{ $datas->tanggal }}</td>
+                                            <td>{{ $datas->jenis }}</td>
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons" style="text-align: center;">
                                                     <a data-id="{{ $datas->id }}" class="green" id="edit-data">
@@ -265,6 +299,19 @@
             <!-- end of plugin scripts -->
             <!--Page level scripts-->
             <script type="text/javascript">
+                $('#jenis').change(function() {
+                    var vjen = $(this).find('option').filter(':selected').val();
+                    if (vjen == 'antigen') {
+                        $('#harga').val('Rp. ' + (700000).toLocaleString().replace(/,/g, ".", ))
+                        $('#harga-raw').val(700000)
+                    } else if (vjen == 'antibody') {
+                        $('#harga').val('Rp. ' + (150000).toLocaleString().replace(/,/g, ".", ))
+                        $('#harga-raw').val(150000)
+                    } else if (vjen == 'pcs') {
+                        $('#harga').val('Rp. ' + (900000).toLocaleString().replace(/,/g, ".", ))
+                        $('#harga-raw').val(900000)
+                    }
+                });
                 $(document).on("click", "#edit-data", function() {
 
                     var id = $(this).data('id');

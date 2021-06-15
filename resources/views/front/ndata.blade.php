@@ -3,7 +3,7 @@
     <div class="data">
         <div class="row">
             <div class="col-12 ">
-                <a class="message-data" id="c-notif" data-id="{{ $datas->id }}">
+                <a class="message-data c-notif" data-id="{{ $datas->id }}">
                     <strong>{{ $datas->name }},</strong>
                     {{ $datas->descript }}
                 </a>
@@ -15,7 +15,7 @@
 @endforelse
 
 <script>
-    $('#c-notif').click(function() {
+    $('.c-notif').click(function() {
         var id = $(this).data('id');
 
         $.ajax({
@@ -25,7 +25,11 @@
             }
         }).then(function(data) {
             if (data) {
-                window.location.href = "{{ route('antrianc.index') }}";
+                if (data.flag == '0') {
+                    window.location.href = "{{ route('antrianc.index') }}";
+                } else {
+                    window.location.href = "{{ route('bukti.index') }}";
+                }
             }
         })
     });

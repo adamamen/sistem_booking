@@ -22,6 +22,10 @@ class CreateBooking extends Migration
             $table->string('tanggal');
             $table->integer('id_pasien');
             $table->integer('flag');
+            $table->integer('no_antrian');
+            $table->integer('open');
+            $table->string('jenis');
+            $table->string('harga');
             $table->timestamps();
         });
     }

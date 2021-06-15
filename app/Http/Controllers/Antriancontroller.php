@@ -10,8 +10,8 @@ class Antriancontroller extends Controller
 {
     function index()
     {
-        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
-        $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
+        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->whereNotNull('no_antrian')->get()->toArray();
+        $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->whereNotNull('no_antrian')->get()->toArray();
         // dd($datasisa);
         return view('antrian.index', ['datasisa' => $datasisa, 'dataall' => $dataall]);
     }
@@ -52,8 +52,6 @@ class Antriancontroller extends Controller
         Booking::wheretanggal($request->tanggal)->update([
             'open' => '1'
         ]);
-
-
 
         $datapasien = Booking::select('*')->whereno_antrian('1')->wheretanggal(date('d-m-Y'))->first();
         $antr = $datapasien->no_antrian + 1;

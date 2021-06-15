@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Bukti;
 use App\Models\Notif;
 use App\Models\Swab;
 use App\Models\Userclient;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class Indexcontroller extends Controller
 {
@@ -50,10 +52,10 @@ class Indexcontroller extends Controller
 
     function antrian_data()
     {
-        $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->wheretanggal(date('d-m-Y'))->get()->toArray();
+        $cek = Booking::select('*')->where('flag', '0')->whereid_pasien(Auth::guard('client')->user()->id)->wheretanggal(date('d-m-Y'))->whereNotNull('no_antrian')->get()->toArray();
 
-        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
-        $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->toArray();
+        $datasisa = Booking::select('*')->where('flag', '0')->orderby('no_antrian', 'asc')->wheretanggal(date('d-m-Y'))->whereNotNull('no_antrian')->get()->toArray();
+        $dataall = Booking::select('*')->orderby('created_at', 'asc')->wheretanggal(date('d-m-Y'))->get()->whereNotNull('no_antrian')->toArray();
         // dd($cek);
         if (empty($cek)) {
             return false;
@@ -67,6 +69,27 @@ class Indexcontroller extends Controller
         $dswab = Swab::select('booking.*', 'swab.id as id_swab', 'swab.hasil as hasil')->join('booking', 'swab.id_booking', 'booking.id')->where('booking.id_pasien', Auth::guard('client')->user()->id)->get();
 
         return view('front.hasil.index', ['data' => $dswab]);
+    }
+
+    function bukti_index()
+    {
+        $data = Bukti::select('booking.*', 'bukti.*')->join('booking', 'bukti.id_booking', 'booking.id')->where('booking.id_pasien', Auth::guard('client')->user()->id)->get();
+        return view('front.bukti.index', ['data' => $data]);
+    }
+
+    function post_bukti(Request $request)
+    {
+        // dd($request->all());
+        $files = $request->file('file');
+        $gname = Str::random(10) . '.' . $files->getClientOriginalExtension();
+        $move = $files->move('uploads/', $gname);
+        if ($move) {
+            Bukti::whereid($request->id)->update([
+                'files' => $gname
+            ]);
+
+            return redirect(route('bukti.index'))->with('status', true)->with('mssg', 'Upload Berhasil');
+        }
     }
 
     function booking_post(Request $request)
@@ -106,15 +129,31 @@ class Indexcontroller extends Controller
         $booking->id_pasien = $request->id_pasien;
         $booking->created_at = Carbon::now();
         $booking->flag = '0';
-        $booking->no_antrian = $lastnumbf + 1;
+        // $booking->no_antrian = $lastnumbf + 1;
         $booking->open = $open;
+        $booking->harga = $request->harga;
+        $booking->jenis = $request->jenis;
         $booking->save();
 
         Userclient::whereid($request->id_pasien)->update([
             'book_flag' => '1'
         ]);
 
-        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Nomor antrian anda adalah ', 'no' => $lastnumbf + 1]);
+        $idbook = Booking::select('id')->whereid_pasien($request->id_pasien)->wheretanggal($request->tanggal)->first();
+        Bukti::insert([
+            'id_booking' => $idbook->id,
+            'codepembayaran' => Str::random(10),
+            'files' => '',
+            'flag' => '0',
+            'created_at' => Carbon::now()
+        ]);
+        Notif::insert([
+            'id_pasien' => $request->id_pasien,
+            'descript' => 'Segera lakukan pembayaran & upload bukti pembayaran dengan benar',
+            'flag_open' => '1',
+        ]);
+
+        return redirect()->route('bookingc.index')->with(['status1' => true, 'mssg' => 'Data booking telah diterima ']);
     }
 
     function get_notif()
@@ -132,12 +171,13 @@ class Indexcontroller extends Controller
 
     function delete_notif(Request $request)
     {
+        $flag = Notif::select('flag_open')->whereid($request->id)->first();
         $a = Notif::where('id', $request->id)->delete();
 
         if ($a) {
-            return response()->json(['stat' => true]);
+            return response()->json(['stat' => true, 'flag' => $flag->flag_open]);
         } else {
-            return response()->json(['stat' => false]);
+            return response()->json(['stat' => false, 'flag' => $flag->flag_open]);
         }
     }
 }

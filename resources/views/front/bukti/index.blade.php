@@ -28,8 +28,14 @@
     <link href="Bocor/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="Bocor/assets/vendor/aos/aos.css" rel="stylesheet">
+
     <link type="text/css" rel="stylesheet" href="/tmpl_admin/vendors/animate/css/animate.min.css" />
+    <!-- Template Main CSS File -->
     <link href="Bocor/assets/css/style.css" rel="stylesheet">
+    <style>
+
+
+    </style>
 
     <!-- =======================================================
   * Template Name: Bocor - v2.2.1
@@ -121,34 +127,102 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
 
-        <div class="container">
-            <div class="row d-flex align-items-center" style="height: 660px">
-                <div class=" col-lg-12 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right"
-                    style="text-align: center">
-                    <img style="height: 420px; width: 660px" src="Bocor/assets/img/tentang.jpg" class="img-fluid"
-                        alt="">
-                    <br>
-                    <br>
-                    <br>
-                    <p style="color: white"> "Ciampel dipercaya unutuk menjadi
-                        pusat kesehatan masyarakat, selain lokasi
-                        yang tidak jauh dari pemukiman warga,
-                        pelayanan juga dilakukan secara gratis. <br>
-                        Puskesmas Ciampel beralamat Jl. Cikonju,
-                        Kutapohaci, Kec. Ciampel, Kabupaten
-                        Karawang, Jawa Barat 41363. <br> gedung yang
-                        baru saja di rombak pada tahun 2019 dan
-                        diresmikan oleh Bupati Karawang yaitu Cellica
-                        Nurachadiana."</p>
+        <div class="container c-c">
+            <div class="row d-flex align-items-center" style="height: 580px">
+                <div class=" col-lg-12 py-5 py-lg-0 order-2 order-lg-1">
+                    <p style="font-weight: bold; font-size: 45px; text-align: center; color: white">UPLOAD BUKTI
+                        PEMBAYARAN</p>
+                    @if (session('status'))
+                        <h2 class="login-header" style="text-align: center; color: #86d886">{{ session('mssg') }}</h2>
+                    @endif
+                    <table class="table table-striped table-bordered table-hover" style="background: white"
+                        id="tb-hasil">
+                        <thead>
+                            <tr>
+                                <th>Kode Pembayaran</th>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Umur</th>
+                                <th>Alamat</th>
+                                <th>Tanggal</th>
+                                <th>Jenis</th>
+                                <th>Jumlah Bayar</th>
+                                <th>Bukti Bayar</th>
+                                <th>Aksi</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($data as $datas)
+                                <tr>
+
+                                    <td>{{ $datas->codepembayaran }}</td>
+                                    <td>{{ $datas->nama }}</td>
+                                    <td>{{ $datas->jenis_kelamin }}</td>
+                                    <td>{{ $datas->umur }}</td>
+                                    <td>{{ $datas->alamat }}</td>
+                                    <td>{{ $datas->tanggal }}</td>
+                                    <td>{{ $datas->jenis }}</td>
+                                    <td>Rp. {{ number_format($datas->harga) }}</td>
+                                    <td>
+                                        @if (!empty($datas->files))
+                                            <a href="uploads/{{ $datas->files }}" target="_blank">Download</a>
+                                        @else
+
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($datas->flag != '1')
+                                            <button class="btn btn-primary btf-upload"
+                                                data-id="{{ $datas->id }}">Upload</button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($datas->flag == '0')
+                                            Pending
+                                        @elseif ($datas->flag == '2')
+                                            Data tidak benar
+                                        @else
+                                            Selesai
+                                        @endif
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                {{-- <div style="padding: 100px" class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-                    <img src="Bocor/assets/img/0000028.png" class="img-fluid" alt="">
-                </div> --}}
             </div>
         </div>
 
     </section><!-- End Hero -->
-
+    <div id="m-upload" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload bukti</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('bukti.post') }}" method="post" class="row" enctype='multipart/form-data'>
+                    <div class="modal-body">
+                        @csrf
+                        <input type="text" name="id" id="ids" hidden>
+                        <input type="file" class="form-control" name="file" accept="image/png, image/gif, image/jpeg"
+                            required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                        {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
@@ -161,10 +235,20 @@
     <script src="Bocor/assets/vendor/venobox/venobox.min.js"></script>
     <script src="Bocor/assets/vendor/aos/aos.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="Bocor/assets/js/main.js"></script>
-
     <script>
+        $('.btf-upload').click(function() {
+            var id = $(this).data('id');
+            console.log(id);
+            $('#ids').val(id);
+            $('#m-upload').modal('show');
+        });
+
+        $('#tb-hasil').DataTable({
+            dom: "<'table-responsive'><'row'<'col-md-5 col-12'><'col-md-7 col-12'>>",
+            iDisplayLength: 25,
+            // order: [[ 0, "desc" ]],
+        });
+
         $("#request_btn, #notifications_section, #messages_section").on("click", function() {
             var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
             $('#notifications_dropdown, #messages_dropdown').addClass('animated fadeIn').one(
@@ -205,6 +289,8 @@
 
     @endif
 
+    <!-- Template Main JS File -->
+    <script src="Bocor/assets/js/main.js"></script>
 
 </body>
 

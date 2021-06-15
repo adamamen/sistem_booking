@@ -3,6 +3,7 @@
 use App\Http\Controllers\Antriancontroller;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\Bookingcontroller;
+use App\Http\Controllers\Bukticontroller;
 use App\Http\Controllers\Indexcontroller;
 use App\Http\Controllers\Pasiencontroller;
 use App\Http\Controllers\Swabcontroller;
@@ -41,6 +42,10 @@ Route::middleware(['auth:web'])->group(function () {
 
     Route::post('src/booking', [Bookingcontroller::class, 'src_booking'])->name('src.book');
 
+    Route::get('bukti/admin/index', [Bukticontroller::class, 'index'])->name('buktia.index');
+    Route::post('bukti/admin/post', [Bukticontroller::class, 'post'])->name('buktia.post');
+    Route::get('bukti/admin/notsccs', [Bukticontroller::class, 'not_sccs'])->name('buktia.notsccs');
+
     Route::get('/logout/admin', function () {
         Auth::guard('web')->logout();
         return redirect()->route('login.admin.index');
@@ -78,6 +83,9 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/get/notif', [Indexcontroller::class, 'get_notif'])->name('get.notif');
     Route::get('/get/notifj', [Indexcontroller::class, 'get_notifj'])->name('get.notifj');
     Route::get('/delete/notif', [Indexcontroller::class, 'delete_notif'])->name('delete.notif');
+
+    Route::get('/upload_bukti', [Indexcontroller::class, 'bukti_index'])->name('bukti.index');
+    Route::post('/upload_bukti/post', [Indexcontroller::class, 'post_bukti'])->name('bukti.post');
 });
 
 Route::get('/', [Indexcontroller::class, 'index'])->name('index');

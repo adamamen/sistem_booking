@@ -70,6 +70,7 @@
                         <li><a href="{{ route('bookingc.index') }}">Booking</a></li>
                         <li><a href="{{ route('antrianc.index') }}">Antrian</a></li>
                         <li><a href="{{ route('hasilc.index') }}">Hasil Swab</a></li>
+                        <li><a href="{{ route('bukti.index') }}">Bukti Pembayaran</a></li>
                     @endif
                     @if (!Auth::guard('client')->check())
                         <li><a href="{{ route('login.index') }}">Login</a></li>

@@ -114,6 +114,12 @@ z-index: 999999">
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('buktia.index') }}">
+                                        <i class="fa fa-id-card"></i>
+                                        <span class="link-title menu_hide">&nbsp;Data Pembayaran
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ route('booking.index') }}">
                                         <i class="fa fa-book"></i>
                                         <span class="link-title menu_hide">&nbsp;Data Booking
