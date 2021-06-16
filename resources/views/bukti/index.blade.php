@@ -77,7 +77,6 @@
                                         <th>Bukti Bayar</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
-                                        <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
