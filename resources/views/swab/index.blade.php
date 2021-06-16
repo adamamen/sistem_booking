@@ -66,7 +66,7 @@
 
                             <table class="table table-striped table-bordered table-hover" id="sample_1">
                                 <thead>
-                                    <tr>>
+                                    <tr>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Umur</th>

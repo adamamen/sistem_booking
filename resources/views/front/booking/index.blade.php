@@ -107,14 +107,12 @@
         <p><input type="text" name="nama" placeholder="Nama" readonly
                 value="{{ Auth::guard('client')->user()->name }}"></p>
         <p>
-            <select class="form-control" name="jenis_kelamin">
-                <option value="laki-laki">Laki-laki</option>
-                <option value="perempuan">Perempuan</option>
-            </select>
+            <input type="text" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}" readonly placeholder="Umur">
+
         </p>
         <input type="text" name="id_pasien" hidden value="{{ Auth::guard('client')->user()->id }}">
-        <p><input type="text" name="umur" placeholder="Umur"></p>
-        <p><input type="text" name="alamat" placeholder="Alamat"></p>
+        <p><input type="text" name="umur" value="{{ $data->umur }}" readonly placeholder="Umur"></p>
+        <p><input type="text" name="alamat" value="{{ $data->alamat }}" readonly placeholder="Alamat"></p>
         <p><input type="text" name="tanggal" class="datepicker" readonly placeholder="tanggal"></p>
         <p>
             <select name="jenis" class="form-control" id="jenis">

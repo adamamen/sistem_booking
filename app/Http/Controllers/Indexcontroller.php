@@ -42,7 +42,8 @@ class Indexcontroller extends Controller
 
     function booking_index()
     {
-        return view('front.booking.index');
+        $data = Userclient::select('*')->whereid(Auth::guard('client')->user()->id)->first();
+        return view('front.booking.index', ['data' => $data]);
     }
 
     function antrian_index()

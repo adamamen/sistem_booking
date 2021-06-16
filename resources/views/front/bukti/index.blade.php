@@ -132,6 +132,8 @@
                 <div class=" col-lg-12 py-5 py-lg-0 order-2 order-lg-1">
                     <p style="font-weight: bold; font-size: 45px; text-align: center; color: white">UPLOAD BUKTI
                         PEMBAYARAN</p>
+                    <p style="font-weight: bold; font-size: 22px; text-align: center; color: white">Harap melakukan
+                        pembayaran ke rekening BCA 09827189 a/n Puskesmas Ciampel</p>
                     @if (session('status'))
                         <h2 class="login-header" style="text-align: center; color: #86d886">{{ session('mssg') }}</h2>
                     @endif

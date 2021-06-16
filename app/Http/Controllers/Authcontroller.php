@@ -58,6 +58,8 @@ class Authcontroller extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'umur' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -77,7 +79,9 @@ class Authcontroller extends Controller
             'name' => $request->name,
             'email' => strtolower($request->email),
             'password' => $pass,
-            'alamat' => $request->alamat
+            'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'umur' => $request->umur
         ]);
 
         if ($simpan) {

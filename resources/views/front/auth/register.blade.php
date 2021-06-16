@@ -1,3 +1,5 @@
+<link href="Bocor/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -103,8 +105,15 @@
         @csrf
         <p><input type="text" name="name" placeholder="Nama"></p>
         <p><input type="email" name="email" placeholder="Email"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
         <p><input type="text" name="alamat" placeholder="Alamat"></p>
+        <p>
+            <select class="form-control" name="jenis_kelamin">
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+        </p>
+        <p><input type="text" name="umur" placeholder="Umur"></p>
+        <p><input type="password" name="password" placeholder="Password"></p>
         <p><input type="submit" value="Register"></p>
     </form>
 </div>

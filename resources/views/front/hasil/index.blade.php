@@ -140,6 +140,7 @@
                                 <th>Umur</th>
                                 <th>Alamat</th>
                                 <th>Tanggal</th>
+                                <th>Jenis</th>
                                 <th>Hasil</th>
                             </tr>
                         </thead>
@@ -155,6 +156,7 @@
                                     <td>{{ $datas->umur }}</td>
                                     <td>{{ $datas->alamat }}</td>
                                     <td>{{ $datas->tanggal }}</td>
+                                    <td>{{ $datas->jenis }}</td>
                                     <td>{{ $datas->hasil }}</td>
 
                                 </tr>

@@ -13,11 +13,14 @@ class CreateUserclient extends Migration
      */
     public function up()
     {
-        Schema::create('Userclient', function (Blueprint $table) {
+        Schema::create('userclient', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
             $table->string('alamat');
+            $table->string('jenis_kelamin');
+            $table->string('umur');
+            $table->integer('book_flag')->default('1');
             $table->string('password');
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateUserclient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Userclient');
+        Schema::dropIfExists('userclient');
     }
 }

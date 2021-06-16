@@ -27,7 +27,7 @@
     active
 @endsection
 @section('judul')
-    Data Pasien
+    Data Pembayaran
 @endsection
 @section('logo-judul')
     fa-bars
@@ -46,17 +46,11 @@
                         </div>
                     @endif
                     <div class="card-header bg-white">
-                        <i class="fa fa-database"></i>Data Pasien
+                        <i class="fa fa-database"></i>Data Pembayaran
                     </div>
                     <div class="card-block p-t-25">
                         <div class="col-sm-12 col-md-12 col-xs-12">
-                            <button type="button" class="btn btn-labeled btn-info" data-toggle="modal"
-                                data-target="#add-data">
-                                <span class="btn-label">
-                                    <i class="fa fa-plus"></i>
-                                </span>
-                                Tambah Data Pasien
-                            </button>
+
                             <div class="m-t-25">
                                 <div class="pull-sm-right">
                                     <div class="tools pull-sm-right"></div>
