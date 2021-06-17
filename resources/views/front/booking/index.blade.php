@@ -107,7 +107,7 @@
         <p><input type="text" name="nama" placeholder="Nama" readonly
                 value="{{ Auth::guard('client')->user()->name }}"></p>
         <p>
-            <input type="text" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}" readonly placeholder="Umur">
+            <input type="text" name="jenis_kelamin" value="{{ $data->jenis_kelamin }}" readonly placeholder="Jenis Kelamin">
 
         </p>
         <input type="text" name="id_pasien" hidden value="{{ Auth::guard('client')->user()->id }}">
