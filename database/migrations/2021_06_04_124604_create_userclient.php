@@ -20,7 +20,7 @@ class CreateUserclient extends Migration
             $table->string('alamat');
             $table->string('jenis_kelamin');
             $table->string('umur');
-            $table->integer('book_flag')->default('1');
+            $table->integer('book_flag')->default('0');
             $table->string('password');
             $table->timestamps();
         });
