@@ -28,6 +28,26 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="email" class="col-form-label"> Jenis Kelamin</label>
+            <div class="input-group">
+                <span class="input-group-addon input_email"><i class="fa fa-bars text-primary"></i></span>
+                <select class="form-control" name="jenis_kelamin">
+                    <option {{ $data->jenis_kelamin == 'laki-laki' ? 'selected' : '' }} value="laki-laki">Laki-laki
+                    </option>
+                    <option {{ $data->jenis_kelamin == 'perempuan' ? 'selected' : '' }} value="perempuan">Perempuan
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-form-label"> Umur</label>
+            <div class="input-group">
+                <span class="input-group-addon input_email"><i class="fa fa-bars text-primary"></i></span>
+                <input type="text" class="form-control  form-control-md" value="{{ $data->umur }}" type="text"
+                    name="umur" placeholder="Umur">
+            </div>
+        </div>
+        <div class="form-group">
             <label for="email" class="col-form-label"> Alamat</label>
             <div class="input-group">
                 <span class="input-group-addon input_email"><i class="fa fa-money text-primary"></i></span>

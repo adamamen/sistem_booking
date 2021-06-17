@@ -93,7 +93,8 @@
 
 </style>
 @if (session('status'))
-    <h2 class="login-header">{{ session('jdl') }} {{ session('mssg') }} <a href="{{ route('login.index') }}">
+    <h2 class="login-header">{{ session('jdl') }} {{ session('mssg') }} <a style="color: rgb(60, 214, 60)"
+            href="{{ route('login.index') }}">
             Login </a></h2>
 @endif
 <div class="login">

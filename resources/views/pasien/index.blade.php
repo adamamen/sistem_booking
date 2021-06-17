@@ -68,8 +68,10 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Email</th>
-                                        <th>Password</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Umur</th>
                                         <th>Alamat</th>
+                                        <th>Password</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -81,8 +83,10 @@
                                         <tr>
                                             <td>{{ $datas->name }}</td>
                                             <td>{{ $datas->email }}</td>
-                                            <td></td>
+                                            <td>{{ $datas->jenis_kelamin }}</td>
+                                            <td>{{ $datas->umur }}</td>
                                             <td>{{ $datas->alamat }}</td>
+                                            <td></td>
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons" style="text-align: center;">
                                                     <a data-id="{{ $datas->id }}" class="green" id="edit-data">
@@ -157,12 +161,23 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="email" class="col-form-label"> Password</label>
+                                            <label for="email" class="col-form-label"> Jenis Kelamin</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon input_email"><i
-                                                        class="fa fa-key  text-primary"></i></span>
-                                                <input type="password" class="form-control  form-control-md" id="harga"
-                                                    name="password" placeholder="Password" required>
+                                                        class="fa fa-bars text-primary"></i></span>
+                                                <select class="form-control" name="jenis_kelamin">
+                                                    <option value="laki-laki">Laki-laki</option>
+                                                    <option value="perempuan">Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Umur</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-bars text-primary"></i></span>
+                                                <input type="text" class="form-control  form-control-md" type="text"
+                                                    name="umur" placeholder="Umur">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -172,6 +187,15 @@
                                                         class="fa fa-address-card text-primary"></i></span>
                                                 <input type="text" class="form-control  form-control-md" id="harga"
                                                     name="alamat" placeholder="Alamat" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="col-form-label"> Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon input_email"><i
+                                                        class="fa fa-key  text-primary"></i></span>
+                                                <input type="password" class="form-control  form-control-md" id="harga"
+                                                    name="password" placeholder="Password" required>
                                             </div>
                                         </div>
                                 </div>

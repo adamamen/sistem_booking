@@ -50,6 +50,8 @@ class Pasiencontroller extends Controller
         $pasien->email = $request->email;
         $pasien->password = Hash::make($request->password);
         $pasien->alamat = $request->alamat;
+        $pasien->umur = $request->umur;
+        $pasien->jenis_kelamin = $request->jenis_kelamin;
         $pasien->save();
 
         return redirect()->route('pasien.index')
@@ -89,18 +91,23 @@ class Pasiencontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         if ($request->password == null) {
             Userclient::whereid($request->id)->update([
                 'name' => $request->nama,
                 'email' => $request->email,
-                'alamat' => $request->alamat
+                'alamat' => $request->alamat,
+                'umur' => $request->umur,
+                'jenis_kelamin' => $request->jenis_kelamin
             ]);
         } else {
             Userclient::whereid($request->id)->update([
                 'name' => $request->nama,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'alamat' => $request->alamat
+                'alamat' => $request->alamat,
+                'umur' => $request->umur,
+                'jenis_kelamin' => $request->jenis_kelamin
             ]);
         }
         return redirect()->route('pasien.index')
