@@ -80,7 +80,7 @@
                                                             <div class="input-group">
                                                                 <span class="input-group-addon input_email"><i
                                                                         class="fa fa-user double text-primary"></i></span>
-                                                                <select name="nama" class="form-control" id="gender">
+                                                                <select name="nama" class="form-control" id="pasien">
                                                                     <option value="">Pilih Pasien</option>
                                                                     @foreach ($user as $users)
 
@@ -95,14 +95,9 @@
                                                             <div class="input-group">
                                                                 <span class="input-group-addon input_email"><i
                                                                         class="fa fa-mars double text-primary"></i></span>
-                                                                <select name="jenis_kelamin" class="form-control"
-                                                                    id="gender">
-                                                                    <option value="">Pilih Jenis Kelamin</option>
-                                                                    <option value="Pria" @if (old('gender') == 'Pria') {{ 'selected' }} @endif>
-                                                                        Pria</option>
-                                                                    <option value="Perempuan" @if (old('gender') == 'Perempuan') {{ 'selected' }} @endif>
-                                                                        Perempuan</option>
-                                                                </select>
+                                                                <input type="text" class="form-control  form-control-md"
+                                                                    name="jenis_kelamin" id="jenis_kelamin"
+                                                                    placeholder="Jenis Kelamin" readonly required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -111,7 +106,8 @@
                                                                 <span class="input-group-addon input_email"><i
                                                                         class="fa fa-hourglass-half text-primary"></i></span>
                                                                 <input type="text" class="form-control  form-control-md"
-                                                                    name="umur" placeholder="Umur" required>
+                                                                    name="umur" id="umur" placeholder="Umur" readonly
+                                                                    required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -120,7 +116,8 @@
                                                                 <span class="input-group-addon input_email"><i
                                                                         class="fa fa-address-card text-primary"></i></span>
                                                                 <input type="text" class="form-control  form-control-md"
-                                                                    name="alamat" placeholder="Alamat" required>
+                                                                    name="alamat" id="alamat" placeholder="Alamat" readonly
+                                                                    required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -299,6 +296,18 @@
             <!-- end of plugin scripts -->
             <!--Page level scripts-->
             <script type="text/javascript">
+                $('#pasien').change(function() {
+                    var id = $(this).find('option').filter(':selected').val();
+                    $.ajax({
+                        url: "pasien/" + id,
+                        type: 'GET'
+                    }).then(function(data) {
+                        $('#jenis_kelamin').val(data.jenis_kelamin);
+                        $('#umur').val(data.umur);
+                        $('#alamat').val(data.alamat);
+                    });
+                });
+
                 $('#jenis').change(function() {
                     var vjen = $(this).find('option').filter(':selected').val();
                     if (vjen == 'antigen') {

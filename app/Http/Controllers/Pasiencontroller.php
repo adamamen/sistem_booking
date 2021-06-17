@@ -65,7 +65,8 @@ class Pasiencontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Userclient::select('*')->whereid($id)->first();
+        return response()->json($data);
     }
 
     /**
