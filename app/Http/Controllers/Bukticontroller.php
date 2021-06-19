@@ -37,7 +37,7 @@ class Bukticontroller extends Controller
             ]);
 
             $antr = $lastnumbf - 1;
-            $datapasien1 = Booking::select('*')->whereno_antrian($lastnumbf)->wheretanggal(date('d-m-Y'))->whereflag('1')->first();
+            $datapasien1 = Booking::select('*')->whereno_antrian($lastnumbf)->wheretanggal(date('d-m-Y'))->whereflag('1')->whereopen('1')->first();
             $dataop = Booking::select('*')->whereno_antrian($lastnumbf)->first();
             // $dataop1 = Booking::select('*')->whereno_antrian($nextant)->whereopen('1')->first();
             if ($datapasien1) {
