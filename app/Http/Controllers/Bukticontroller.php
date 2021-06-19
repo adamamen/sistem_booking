@@ -57,7 +57,7 @@ class Bukticontroller extends Controller
 
             if (!empty($lastnumbf)) {
                 # code...
-                $datapasien = Booking::select('*')->whereno_antrian($lastnumbf)->wheretanggal(date('d-m-Y'))->whereflag('0')->whereopen('0')->first();
+                $datapasien = Booking::select('*')->whereno_antrian($lastnumbf)->wheretanggal(date('d-m-Y'))->whereflag('1')->whereopen('0')->first();
                 if ($datapasien) {
                     # code...
                     Notif::insert([
