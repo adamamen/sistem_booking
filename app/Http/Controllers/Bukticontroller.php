@@ -38,7 +38,7 @@ class Bukticontroller extends Controller
 
             $antr = $lastnumbf - 1;
             $datapasien1 = Booking::select('*')->whereno_antrian($lastnumbf)->wheretanggal(date('d-m-Y'))->whereflag('1')->whereopen('1')->first();
-            $dataop = Booking::select('*')->whereno_antrian($lastnumbf)->first();
+            $dataop = Booking::select('*')->whereno_antrian($nextant)->whereopen('1')->first();
             // $dataop1 = Booking::select('*')->whereno_antrian($nextant)->whereopen('1')->first();
             if ($datapasien1) {
                 # code...
@@ -47,7 +47,7 @@ class Bukticontroller extends Controller
                     'descript' => 'GILIRAN ANDA',
                     'flag_open' => '0',
                 ]);
-            } elseif (empty($lastnumbf)) {
+            } elseif (empty($lastnumbf) && $dataop) {
                 Notif::insert([
                     'id_pasien' => $request->idpas,
                     'descript' => 'GILIRAN ANDA',
